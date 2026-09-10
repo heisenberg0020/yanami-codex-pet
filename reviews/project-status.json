@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "date": "2026-09-10",
   "phase": "codex-work-integration",
-  "releaseStatus": "v0.2-hooks-enabled-cli-verified",
+  "releaseStatus": "v0.2.1-real-reward-verified-existing-desktop-task-pending",
   "repositoryVisibility": "public",
   "latestArtIteration": "iteration-03",
   "latestArtDecision": "retired-from-mainline-by-user-direction",
@@ -14,13 +14,12 @@
   "baselineUnchanged": true,
   "automatedTests": {
     "pythonPassed": 17,
-    "nodePassed": 88
+    "nodePassed": 92
   },
   "previewBrowserReview": "pass-for-documented-samples",
   "codexAcceptance": "not-run-superseded-by-user-direction",
   "nextActions": [
-    "Observe the first real work event from a desktop Codex task",
-    "Accumulate three eligible observed rounds and let the user claim the first snack"
+    "After the user normally reopens Codex, verify a tool round in the original pre-install desktop task; restart is a diagnostic step, not a guaranteed fix"
   ],
   "continuousMotionReview": "not-run-superseded-by-user-direction",
   "activeDirection": "Preserve original animations and add optional extensions",
@@ -46,8 +45,8 @@
   "codexWorkIntegration": {
     "implementation": "complete",
     "simulatedEndToEnd": "passed",
-    "localInstallation": "complete",
-    "nativeWorkEvents": "one-real-CLI-round-passed; desktop-task-source-pending",
+    "localInstallation": "v0.2.1-build-3-running",
+    "nativeWorkEvents": "one-CLI-round-plus-two-app-continued-test-rounds-credited; original-pre-install-desktop-task-unobserved",
     "nativePetInteractionAPI": "not-integrated",
     "review": "reviews/codex-integration-v1/review.md",
     "hookTrust": "seven-exact-definitions-enabled-through-official-CLI-hooks-UI",
@@ -56,6 +55,20 @@
       "progress": 1,
       "target": 3,
       "pendingRewards": 0
+    },
+    "continuationCompatibility": "PreToolUse may establish first observation; same-turn PostToolUse and Stop still required",
+    "realEndToEnd": {
+      "status": "passed",
+      "source": "one CLI-submitted round and two official app-continued rounds in the same CLI-created test task",
+      "completedTurns": 3,
+      "progress": 0,
+      "target": 3,
+      "pendingRewards": 0,
+      "receipt": "one strawberry-milk; mode=codex; quantity=1; focusMinutes=0",
+      "inventoryBefore": 1,
+      "inventoryAfter": 2,
+      "refreshDuplicateReward": false,
+      "historicalUncreditedRoundsPreserved": 2
     }
   },
   "previousGitHubCI": {

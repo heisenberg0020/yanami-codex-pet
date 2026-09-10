@@ -73,12 +73,13 @@ export function applyCodexEvent(input, event, now) {
     }
     const terminal = ['stopped', 'interrupted'].includes(turn.status);
     if (!terminal || turn.status === 'stopped' && !turn.credited) {
-      if (event.kind === 'UserPromptSubmit') turn.startedAt ??= event.at;
+      // Continued turns may reach the tool hook without a new prompt hook.
+      if (event.kind === 'UserPromptSubmit' || event.kind === 'PreToolUse') turn.startedAt ??= event.at;
       if (event.kind === 'PostToolUse') turn.toolAt ??= event.at;
       if (event.kind === 'Interrupt') {
         turn.status = 'interrupted';
       } else if (terminal) {
-        // Async hooks can deliver the tool observation after the Stop signal.
+        // Async hooks can deliver start or tool observations after the Stop signal.
       } else if (event.at >= turn.lastEventAt) {
         turn.status = event.kind === 'PermissionRequest' ? 'waiting' : event.kind === 'Stop' ? 'stopped' : event.kind === 'Interrupt' ? 'interrupted' : 'working';
       } else if (event.kind === 'Interrupt' || event.kind === 'Stop') {

@@ -62,6 +62,68 @@ test('three observed work rounds create one claimable snack, with zero human-foc
   await assert.rejects(store.dispatch(action('another-claim', 'claimCodex', 1), T + 10_003), { code: 'NO_CODEX_REWARD' });
 });
 
+test('continued rounds without UserPromptSubmit earn once from PreToolUse, PostToolUse and Stop', async (t) => {
+  const { store } = await fixture(t);
+  const events = [0, 1, 2].flatMap(i => ['PreToolUse', 'PostToolUse', 'Stop']
+    .map((kind, offset) => event(kind, 'continued-session', `round-${i}`, T + i * 10 + offset)));
+  const observed = await store.ingest(events, T + 10_000);
+  assert.equal(observed.revision, 0);
+  assert.equal(observed.codex.credits.length, 3);
+  assert.deepEqual(observed.codex.turns.map(turn => turn.startedAt), [T, T + 10, T + 20]);
+  assert.equal(codexView(observed.codex, observed.receipts, T + 10_000).pendingRewards, 1);
+  const claimed = await store.dispatch(action('claim-continued-work', 'claimCodex', 0), T + 10_001);
+  assert.equal(total(claimed.state.inventory), 7);
+  assert.equal(claimed.state.receipts[0].focusMinutes, 0);
+  assert.equal(claimed.state.receipts[0].durationMs, 0);
+  const replayed = await store.ingest(events.map(item => ({ ...item, id: hash(`redelivered:${item.id}`) })), T + 10_002);
+  assert.deepEqual(replayed.codex.credits, observed.codex.credits);
+  assert.equal(replayed.revision, 1);
+  assert.equal(codexView(replayed.codex, replayed.receipts, T + 10_002).pendingRewards, 0);
+});
+
+test('a late PreToolUse can settle a stopped tool-driven round without a prompt', () => {
+  const pre = event('PreToolUse', 'late-pre', 'one', T);
+  const post = event('PostToolUse', 'late-pre', 'one', T + 10);
+  const stop = event('Stop', 'late-pre', 'one', T + 20);
+  const stopped = fold([stop, post]);
+  assert.equal(stopped.credits.length, 0);
+  const settled = fold([pre], stopped);
+  assert.equal(settled.credits.length, 1);
+  assert.equal(settled.turns[0].startedAt, T);
+  assert.equal(settled.turns[0].toolAt, T + 10);
+  assert.equal(settled.turns[0].lastEventAt, T + 20);
+  assert.equal(settled.turns[0].status, 'stopped');
+  assert.deepEqual(fold([{ ...pre, id: hash('late-pre-retry') }, post, stop], settled), settled);
+});
+
+test('PreToolUse never revives an interrupted round even when delivery is late', () => {
+  for (const kinds of [
+    ['PreToolUse', 'PostToolUse', 'Interrupt', 'Stop'],
+    ['PostToolUse', 'Stop', 'Interrupt', 'PreToolUse'],
+    ['Interrupt', 'PreToolUse', 'PostToolUse', 'Stop'],
+  ]) {
+    const events = kinds.map((kind, i) => event(kind, 'interrupted-continuation', 'one', kind === 'PreToolUse' ? T : T + i + 1));
+    const state = fold(events);
+    assert.equal(state.credits.length, 0, kinds.join(','));
+    assert.equal(state.turns[0].status, 'interrupted');
+  }
+});
+
+test('PreToolUse with no turn or a different session or turn cannot qualify an isolated PostToolUse and Stop', () => {
+  for (const pre of [
+    event('PreToolUse', 'target', null),
+    event('PreToolUse', 'target', 'other'),
+    event('PreToolUse', 'other', 'one'),
+  ]) {
+    const state = fold([pre, event('PostToolUse', 'target', 'one', T + 1), event('Stop', 'target', 'one', T + 2)]);
+    assert.equal(state.credits.length, 0);
+    assert.equal(state.turns.find(turn => turn.sessionId === hash('target') && turn.turnId === hash('one')).startedAt, null);
+  }
+  const unpaired = fold([event('PreToolUse', 'target', 'one'), event('PostToolUse', 'target', null, T + 1), event('Stop', 'target', 'one', T + 2)]);
+  assert.equal(unpaired.credits.length, 0);
+  assert.throws(() => applyCodexEvent(createCodexState(), { ...event('PreToolUse'), turnId: '' }, T), { code: 'INVALID_CODEX_EVENT' });
+});
+
 test('prompt-only, denied-before-tool and unpaired Stop observations earn nothing', () => {
   for (const kinds of [['UserPromptSubmit', 'Stop'], ['UserPromptSubmit', 'PreToolUse', 'PermissionRequest', 'Stop'], ['PostToolUse', 'Stop'], ['Stop']]) {
     const state = fold(kinds.map((kind, i) => event(kind, 'no-work', 'one', T + i)));
