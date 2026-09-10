@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "date": "2026-09-10",
   "phase": "codex-work-integration",
-  "releaseStatus": "v0.2-installed-awaiting-hook-review",
+  "releaseStatus": "v0.2-hooks-enabled-cli-verified",
   "repositoryVisibility": "public",
   "latestArtIteration": "iteration-03",
   "latestArtDecision": "retired-from-mainline-by-user-direction",
@@ -19,9 +19,8 @@
   "previewBrowserReview": "pass-for-documented-samples",
   "codexAcceptance": "not-run-superseded-by-user-direction",
   "nextActions": [
-    "User reviews directory and exact Yanami Hook definitions in official Codex CLI",
-    "Verify real desktop work events update the production snack card",
-    "After three eligible observed rounds, verify one claim and zero focus minutes"
+    "Observe the first real work event from a desktop Codex task",
+    "Accumulate three eligible observed rounds and let the user claim the first snack"
   ],
   "continuousMotionReview": "not-run-superseded-by-user-direction",
   "activeDirection": "Preserve original animations and add optional extensions",
@@ -48,9 +47,16 @@
     "implementation": "complete",
     "simulatedEndToEnd": "passed",
     "localInstallation": "complete",
-    "nativeWorkEvents": "pending-user-hook-trust-and-real-event-test",
+    "nativeWorkEvents": "one-real-CLI-round-passed; desktop-task-source-pending",
     "nativePetInteractionAPI": "not-integrated",
-    "review": "reviews/codex-integration-v1/review.md"
+    "review": "reviews/codex-integration-v1/review.md",
+    "hookTrust": "seven-exact-definitions-enabled-through-official-CLI-hooks-UI",
+    "realCLIProgress": {
+      "completedTurns": 1,
+      "progress": 1,
+      "target": 3,
+      "pendingRewards": 0
+    }
   },
   "previousGitHubCI": {
     "status": "pass",
@@ -58,7 +64,8 @@
     "url": "https://github.com/heisenberg0020/yanami-codex-pet/actions/runs/34460733709"
   },
   "githubCI": {
-    "status": "see-current-commit-checks",
-    "url": "https://github.com/heisenberg0020/yanami-codex-pet/actions"
+    "status": "pass",
+    "testedCommit": "804e3e0bdcf4b1ed926d7c98951b87b14d233352",
+    "url": "https://github.com/heisenberg0020/yanami-codex-pet/actions/runs/34467416673"
   }
 }
