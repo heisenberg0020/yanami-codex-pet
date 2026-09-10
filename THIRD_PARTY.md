@@ -31,3 +31,9 @@
 [docs/research.md](docs/research.md)记录参考项目与具体文档/代码链接。参考动作机制、工作流或产品设计，不等于复制这些仓库的代码和人物素材。若后续直接引入任何第三方代码、字体、声音或图像，应在此补上准确文件、上游版本与相应许可证，并保留要求的声明。
 
 Python、Pillow 等运行依赖有各自的许可；具体依赖列表以工具声明为准。本文件不把依赖许可证扩展成 Yanami 素材的许可证。
+
+## 小卖部 v0.1
+
+配套程序状态、存档、UI与Swift启动器由本项目编写，角色继续读取上述原版图集。点心图由内置图像生成工具生成，原始输出在 `assets/source/companion-v1/`，页面使用WebP副本；概念图与准确提示词在 `reviews/companion-v1/`。概念图中的再绘人物不作为实际角色素材。
+
+网页运行依赖 React / React DOM 19.3.0 及其 Scheduler，MIT声明随页面附带在 `companion/public/THIRD-PARTY-NOTICES.txt`；版本由package-lock.json固定。Mac构建会随复制的Node运行时附带其原发行版LICENSE，并检查不存在未携带的外部动态库。Vite仅用于构建，不作为Mac运行时依赖。

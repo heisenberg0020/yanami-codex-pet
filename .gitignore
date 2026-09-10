@@ -8,6 +8,7 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 node_modules/
+dist/
 .cache/
 
 # 临时制作文件；正式源素材与 reviews 不忽略

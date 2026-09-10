@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "date": "2026-09-10",
-  "phase": "expansion-design",
-  "releaseStatus": "design-only",
+  "phase": "companion-mvp",
+  "releaseStatus": "v0.1-local-preview",
   "repositoryVisibility": "public",
   "latestArtIteration": "iteration-03",
   "latestArtDecision": "retired-from-mainline-by-user-direction",
@@ -14,24 +14,34 @@
   "baselineUnchanged": true,
   "automatedTests": {
     "pythonPassed": 17,
-    "previewPassed": 6
+    "nodePassed": 49
   },
   "previewBrowserReview": "pass-for-documented-samples",
   "codexAcceptance": "not-run-superseded-by-user-direction",
   "nextActions": [
-    "Choose extension features and companion-card versus unified-renderer form",
-    "Validate original-motion preservation and the smallest chosen gameplay loop",
-    "Verify desktop lifecycle events only if automatic Codex integration is selected"
+    "Collect user feedback on the snack and focus loop",
+    "Tune content, drop cadence and card layout from actual use",
+    "Consider reminders or Codex events only after selecting the next extension"
   ],
   "continuousMotionReview": "not-run-superseded-by-user-direction",
-  "githubCI": {
+  "activeDirection": "Preserve original animations and add optional extensions",
+  "userPreference": "Original actions are preferred; stop refining or replacing them",
+  "activeDesign": "docs/首版执行计划.md",
+  "expansionImplemented": true,
+  "originalAtlasSha256": "41d2ed83cdd7285a8cbf441fc530b11bce7e6e0c0345192aaf3b2e6a19fa3fe3",
+  "companionReview": "reviews/companion-v1/review.md",
+  "companionAcceptance": {
+    "chromeDesktop": "passed",
+    "chrome390": "passed",
+    "codexInAppBrowser319": "passed",
+    "macWKWebView": "passed",
+    "macQuitAndRestart": "passed",
+    "uncertainSaveAfterRefresh": "passed"
+  },
+  "historicalCandidateCI": {
     "status": "pass",
     "testedCommit": "d814c6324e4ed399b66866506a738d06175bc83f",
     "url": "https://github.com/heisenberg0020/yanami-codex-pet/actions/runs/34454784520",
     "candidateRebuildPixelsMatch": true
-  },
-  "activeDirection": "Preserve original animations and add optional extensions",
-  "userPreference": "Original actions are preferred; stop refining or replacing them",
-  "activeDesign": "docs/扩展方案.md",
-  "expansionImplemented": false
+  }
 }
