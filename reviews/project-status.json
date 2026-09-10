@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "date": "2026-09-10",
-  "phase": "native-acceptance-pending",
-  "releaseStatus": "candidate",
+  "phase": "expansion-design",
+  "releaseStatus": "design-only",
   "repositoryVisibility": "public",
   "latestArtIteration": "iteration-03",
-  "latestArtDecision": "static-review-pass",
+  "latestArtDecision": "retired-from-mainline-by-user-direction",
   "candidatePackage": "pets/yanami-anna-refined",
   "candidateId": "candidate-001",
   "atlasSha256": "ded4a7e49b623aa997494fbd6069b9a1e25ff1011c598c40bd39da85fb114afe",
@@ -17,16 +17,21 @@
     "previewPassed": 6
   },
   "previewBrowserReview": "pass-for-documented-samples",
-  "codexAcceptance": "not-run-awaiting-user",
+  "codexAcceptance": "not-run-superseded-by-user-direction",
   "nextActions": [
-    "User selects 八奈见杏菜·精修 and reports actual Codex effect",
-    "Revise the affected frames if actual use shows problems"
+    "Choose extension features and companion-card versus unified-renderer form",
+    "Validate original-motion preservation and the smallest chosen gameplay loop",
+    "Verify desktop lifecycle events only if automatic Codex integration is selected"
   ],
-  "continuousMotionReview": "not-run-awaiting-user",
+  "continuousMotionReview": "not-run-superseded-by-user-direction",
   "githubCI": {
     "status": "pass",
     "testedCommit": "d814c6324e4ed399b66866506a738d06175bc83f",
     "url": "https://github.com/heisenberg0020/yanami-codex-pet/actions/runs/34454784520",
     "candidateRebuildPixelsMatch": true
-  }
+  },
+  "activeDirection": "Preserve original animations and add optional extensions",
+  "userPreference": "Original actions are preferred; stop refining or replacing them",
+  "activeDesign": "docs/扩展方案.md",
+  "expansionImplemented": false
 }
