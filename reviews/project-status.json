@@ -78,7 +78,7 @@
   },
   "githubCI": {
     "status": "pass",
-    "testedCommit": "804e3e0bdcf4b1ed926d7c98951b87b14d233352",
-    "url": "https://github.com/heisenberg0020/yanami-codex-pet/actions/runs/34467416673"
+    "testedCommit": "14d2a507c02278b1f66e5d073812d07682b9d7f4",
+    "url": "https://github.com/heisenberg0020/yanami-codex-pet/actions/runs/34471994615"
   }
 }
