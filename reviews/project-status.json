@@ -16,11 +16,17 @@
     "pythonPassed": 17,
     "previewPassed": 6
   },
-  "previewBrowserReview": "in-progress",
+  "previewBrowserReview": "pass-for-documented-samples",
   "codexAcceptance": "not-run-awaiting-user",
   "nextActions": [
-    "Complete browser review of the installed candidate hash",
     "User selects 八奈见杏菜·精修 and reports actual Codex effect",
     "Revise the affected frames if actual use shows problems"
-  ]
+  ],
+  "continuousMotionReview": "not-run-awaiting-user",
+  "githubCI": {
+    "status": "pass",
+    "testedCommit": "d814c6324e4ed399b66866506a738d06175bc83f",
+    "url": "https://github.com/heisenberg0020/yanami-codex-pet/actions/runs/34454784520",
+    "candidateRebuildPixelsMatch": true
+  }
 }
