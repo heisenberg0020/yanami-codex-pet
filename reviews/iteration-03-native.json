@@ -1,0 +1,876 @@
+{
+  "schemaVersion": 1,
+  "implementationSha256": "dba944f8879adf8f791398092e7180a7d3335f745af72ae8e777aa2462c26709",
+  "parameters": {
+    "grid": "3x2",
+    "crop": [
+      64,
+      48,
+      384,
+      416
+    ],
+    "scale": 0.5,
+    "baselineTargetExclusive": 203,
+    "alphaThreshold": 8
+  },
+  "sharedTranslation": [
+    0,
+    0
+  ],
+  "baselineSamplesBeforeTranslation": [
+    204,
+    204,
+    204,
+    203,
+    203,
+    203,
+    203,
+    203,
+    203,
+    203,
+    203,
+    203,
+    203,
+    203,
+    203,
+    203,
+    203,
+    203
+  ],
+  "perFrameScaling": false,
+  "perFrameTranslation": false,
+  "records": [
+    {
+      "input": "assets/source/iteration-03-alpha/idle.png",
+      "inputSha256": "be757c17a75c6e5ac90bb9a7dcb7b3b4c1572d208aab796067f3e2fe998d75c6",
+      "output": "assets/source/iteration-03-native/idle.png",
+      "outputSha256": "fb23e249adf941141ecc453633bcb53dfb5d233e1eb3318a9697edc9fd0d12c5",
+      "size": [
+        576,
+        416
+      ],
+      "mode": "RGBA",
+      "frames": [
+        {
+          "index": 0,
+          "sourceBBox": [
+            159,
+            57,
+            354,
+            456
+          ],
+          "sourceMeaningfulBBox": [
+            160,
+            58,
+            353,
+            455
+          ],
+          "scaledBBox": [
+            46,
+            3,
+            147,
+            206
+          ],
+          "scaledMeaningfulBBox": [
+            48,
+            5,
+            145,
+            204
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            46,
+            3,
+            147,
+            206
+          ],
+          "outputMeaningfulBBox": [
+            48,
+            5,
+            145,
+            204
+          ]
+        },
+        {
+          "index": 1,
+          "sourceBBox": [
+            158,
+            57,
+            354,
+            456
+          ],
+          "sourceMeaningfulBBox": [
+            159,
+            58,
+            353,
+            455
+          ],
+          "scaledBBox": [
+            45,
+            3,
+            147,
+            206
+          ],
+          "scaledMeaningfulBBox": [
+            47,
+            5,
+            145,
+            204
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            45,
+            3,
+            147,
+            206
+          ],
+          "outputMeaningfulBBox": [
+            47,
+            5,
+            145,
+            204
+          ]
+        },
+        {
+          "index": 2,
+          "sourceBBox": [
+            158,
+            57,
+            353,
+            456
+          ],
+          "sourceMeaningfulBBox": [
+            159,
+            58,
+            352,
+            455
+          ],
+          "scaledBBox": [
+            45,
+            3,
+            146,
+            206
+          ],
+          "scaledMeaningfulBBox": [
+            47,
+            5,
+            144,
+            204
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            45,
+            3,
+            146,
+            206
+          ],
+          "outputMeaningfulBBox": [
+            47,
+            5,
+            144,
+            204
+          ]
+        },
+        {
+          "index": 3,
+          "sourceBBox": [
+            158,
+            57,
+            354,
+            455
+          ],
+          "sourceMeaningfulBBox": [
+            159,
+            58,
+            353,
+            454
+          ],
+          "scaledBBox": [
+            45,
+            3,
+            147,
+            205
+          ],
+          "scaledMeaningfulBBox": [
+            47,
+            5,
+            145,
+            203
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            45,
+            3,
+            147,
+            205
+          ],
+          "outputMeaningfulBBox": [
+            47,
+            5,
+            145,
+            203
+          ]
+        },
+        {
+          "index": 4,
+          "sourceBBox": [
+            158,
+            57,
+            354,
+            455
+          ],
+          "sourceMeaningfulBBox": [
+            159,
+            58,
+            353,
+            454
+          ],
+          "scaledBBox": [
+            45,
+            3,
+            147,
+            205
+          ],
+          "scaledMeaningfulBBox": [
+            47,
+            5,
+            145,
+            203
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            45,
+            3,
+            147,
+            205
+          ],
+          "outputMeaningfulBBox": [
+            47,
+            5,
+            145,
+            203
+          ]
+        },
+        {
+          "index": 5,
+          "sourceBBox": [
+            158,
+            57,
+            353,
+            455
+          ],
+          "sourceMeaningfulBBox": [
+            159,
+            58,
+            352,
+            454
+          ],
+          "scaledBBox": [
+            45,
+            3,
+            146,
+            205
+          ],
+          "scaledMeaningfulBBox": [
+            47,
+            5,
+            144,
+            203
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            45,
+            3,
+            146,
+            205
+          ],
+          "outputMeaningfulBBox": [
+            47,
+            5,
+            144,
+            203
+          ]
+        }
+      ]
+    },
+    {
+      "input": "assets/source/iteration-03-alpha/waiting.png",
+      "inputSha256": "6e8007a219dc72037e7441c93554226c62b18ecf1a2de1398c54577c619bba23",
+      "output": "assets/source/iteration-03-native/waiting.png",
+      "outputSha256": "753e842484499288c06efc01ca2732c93a2357d85a25418fdf020c499fe52621",
+      "size": [
+        576,
+        416
+      ],
+      "mode": "RGBA",
+      "frames": [
+        {
+          "index": 0,
+          "sourceBBox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "sourceMeaningfulBBox": [
+            159,
+            57,
+            353,
+            454
+          ],
+          "scaledBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "scaledMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "outputMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ]
+        },
+        {
+          "index": 1,
+          "sourceBBox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "sourceMeaningfulBBox": [
+            159,
+            57,
+            353,
+            454
+          ],
+          "scaledBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "scaledMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "outputMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ]
+        },
+        {
+          "index": 2,
+          "sourceBBox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "sourceMeaningfulBBox": [
+            159,
+            57,
+            353,
+            454
+          ],
+          "scaledBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "scaledMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "outputMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ]
+        },
+        {
+          "index": 3,
+          "sourceBBox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "sourceMeaningfulBBox": [
+            159,
+            57,
+            353,
+            454
+          ],
+          "scaledBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "scaledMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "outputMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ]
+        },
+        {
+          "index": 4,
+          "sourceBBox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "sourceMeaningfulBBox": [
+            159,
+            57,
+            353,
+            454
+          ],
+          "scaledBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "scaledMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "outputMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ]
+        },
+        {
+          "index": 5,
+          "sourceBBox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "sourceMeaningfulBBox": [
+            159,
+            57,
+            353,
+            454
+          ],
+          "scaledBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "scaledMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "outputMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ]
+        }
+      ]
+    },
+    {
+      "input": "assets/source/iteration-03-alpha/running.png",
+      "inputSha256": "9c7c2d5b6c867ff3296a7893ef5a4a8931c84454d444a6e4b6b0f8b7d00947aa",
+      "output": "assets/source/iteration-03-native/running.png",
+      "outputSha256": "f4cfa1dcf3145fd8f3c64403f61f72627edd556b33806f7cf6e6e4b962de4df0",
+      "size": [
+        576,
+        416
+      ],
+      "mode": "RGBA",
+      "frames": [
+        {
+          "index": 0,
+          "sourceBBox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "sourceMeaningfulBBox": [
+            159,
+            57,
+            353,
+            454
+          ],
+          "scaledBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "scaledMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "outputMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ]
+        },
+        {
+          "index": 1,
+          "sourceBBox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "sourceMeaningfulBBox": [
+            159,
+            57,
+            353,
+            454
+          ],
+          "scaledBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "scaledMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "outputMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ]
+        },
+        {
+          "index": 2,
+          "sourceBBox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "sourceMeaningfulBBox": [
+            159,
+            57,
+            353,
+            454
+          ],
+          "scaledBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "scaledMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "outputMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ]
+        },
+        {
+          "index": 3,
+          "sourceBBox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "sourceMeaningfulBBox": [
+            159,
+            57,
+            353,
+            454
+          ],
+          "scaledBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "scaledMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "outputMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ]
+        },
+        {
+          "index": 4,
+          "sourceBBox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "sourceMeaningfulBBox": [
+            159,
+            57,
+            353,
+            454
+          ],
+          "scaledBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "scaledMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "outputMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ]
+        },
+        {
+          "index": 5,
+          "sourceBBox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "sourceMeaningfulBBox": [
+            159,
+            57,
+            353,
+            454
+          ],
+          "scaledBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "scaledMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ],
+          "translation": [
+            0,
+            0
+          ],
+          "outputBBox": [
+            45,
+            2,
+            147,
+            205
+          ],
+          "outputMeaningfulBBox": [
+            47,
+            4,
+            145,
+            203
+          ]
+        }
+      ]
+    }
+  ],
+  "previews": [
+    "reviews/iteration-03-native/contact-dark.png",
+    "reviews/iteration-03-native/contact-light.png",
+    "reviews/iteration-03-native/first-frame-detail.png"
+  ],
+  "visualReview": {
+    "status": "reviewed-static-native-frames",
+    "method": "view_image dark and light contact sheets at native 192x208 cell scale",
+    "notes": [
+      "Face, white blouse, hair loops, hands and book remain visible after fixed scaling.",
+      "No obvious green fringe or clipping in these views.",
+      "Shared translation is zero. Meaningful foot baseline is 203 for 15 frames and 204 for the first 3 idle frames; source variation within 1 pixel is retained.",
+      "Animation timing, original-to-new state transitions and desktop presentation remain separate review steps."
+    ]
+  },
+  "notes": [
+    "Fixed inverse of reference packing, followed by one shared translation.",
+    "Full alpha bbox and meaningful alpha bbox are both retained; do not infer anatomy from bbox alone."
+  ]
+}

@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Alpha extraction review only; character identity is not approved",
+  "method": "border-connected color matte + guarded enclosed holes + bounded edge-color extension",
+  "parameters": {
+    "output_dir": "assets/source/iteration-03-alpha",
+    "report": "reviews/iteration-03-alpha.json",
+    "grid": "3x2",
+    "background": "#00ff00",
+    "max_chroma": 14,
+    "min_gray": 90,
+    "tolerance": 55,
+    "spill_threshold": 16,
+    "min_hole": 1,
+    "max_hole": 1800,
+    "hole_zones": "all",
+    "min_component": 20,
+    "feather": 0.45
+  },
+  "implementationSha256": "b6a8499985bc281b9f96629abd64c2e4f38ca2da6b01a6320d311c5894bff126",
+  "runtime": {
+    "python": "3.9.6",
+    "pillow": "11.3.0",
+    "numpy": "2.0.2"
+  },
+  "records": [
+    {
+      "input": "assets/source/iteration-03/idle.png",
+      "inputSha256": "47f8a0e41d35d844fac4bf4767dd0c70a2000afe9976e1656e1f5bb5227055e9",
+      "output": "assets/source/iteration-03-alpha/idle.png",
+      "outputSha256": "be757c17a75c6e5ac90bb9a7dcb7b3b4c1572d208aab796067f3e2fe998d75c6",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "bbox": [
+            159,
+            57,
+            354,
+            456
+          ],
+          "transparentPixels": 219165,
+          "opaquePixels": 36031,
+          "edgePixels": 6948,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 215,
+              "bbox": [
+                242,
+                62,
+                262,
+                80
+              ]
+            },
+            {
+              "area": 254,
+              "bbox": [
+                164,
+                150,
+                178,
+                196
+              ]
+            },
+            {
+              "area": 241,
+              "bbox": [
+                338,
+                156,
+                349,
+                196
+              ]
+            },
+            {
+              "area": 20,
+              "bbox": [
+                298,
+                242,
+                303,
+                249
+              ]
+            },
+            {
+              "area": 1,
+              "bbox": [
+                270,
+                252,
+                271,
+                253
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 1,
+          "bbox": [
+            158,
+            57,
+            354,
+            456
+          ],
+          "transparentPixels": 219101,
+          "opaquePixels": 36123,
+          "edgePixels": 6920,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 212,
+              "bbox": [
+                242,
+                62,
+                262,
+                81
+              ]
+            },
+            {
+              "area": 263,
+              "bbox": [
+                163,
+                151,
+                177,
+                196
+              ]
+            },
+            {
+              "area": 248,
+              "bbox": [
+                338,
+                156,
+                350,
+                196
+              ]
+            },
+            {
+              "area": 1,
+              "bbox": [
+                270,
+                252,
+                271,
+                253
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 2,
+          "bbox": [
+            158,
+            57,
+            353,
+            456
+          ],
+          "transparentPixels": 219216,
+          "opaquePixels": 36008,
+          "edgePixels": 6920,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 214,
+              "bbox": [
+                241,
+                62,
+                261,
+                81
+              ]
+            },
+            {
+              "area": 257,
+              "bbox": [
+                163,
+                151,
+                177,
+                196
+              ]
+            },
+            {
+              "area": 245,
+              "bbox": [
+                337,
+                156,
+                348,
+                196
+              ]
+            },
+            {
+              "area": 26,
+              "bbox": [
+                297,
+                242,
+                302,
+                249
+              ]
+            },
+            {
+              "area": 1,
+              "bbox": [
+                270,
+                252,
+                271,
+                253
+              ]
+            },
+            {
+              "area": 1,
+              "bbox": [
+                272,
+                252,
+                273,
+                253
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 3,
+          "bbox": [
+            158,
+            57,
+            354,
+            455
+          ],
+          "transparentPixels": 219203,
+          "opaquePixels": 35998,
+          "edgePixels": 6943,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 212,
+              "bbox": [
+                242,
+                62,
+                262,
+                80
+              ]
+            },
+            {
+              "area": 252,
+              "bbox": [
+                164,
+                150,
+                178,
+                196
+              ]
+            },
+            {
+              "area": 240,
+              "bbox": [
+                338,
+                156,
+                349,
+                196
+              ]
+            },
+            {
+              "area": 15,
+              "bbox": [
+                298,
+                242,
+                301,
+                248
+              ]
+            },
+            {
+              "area": 1,
+              "bbox": [
+                301,
+                248,
+                302,
+                249
+              ]
+            },
+            {
+              "area": 1,
+              "bbox": [
+                274,
+                250,
+                275,
+                251
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 4,
+          "bbox": [
+            158,
+            57,
+            354,
+            455
+          ],
+          "transparentPixels": 219231,
+          "opaquePixels": 36012,
+          "edgePixels": 6901,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 215,
+              "bbox": [
+                242,
+                62,
+                262,
+                80
+              ]
+            },
+            {
+              "area": 260,
+              "bbox": [
+                163,
+                151,
+                177,
+                196
+              ]
+            },
+            {
+              "area": 242,
+              "bbox": [
+                338,
+                156,
+                349,
+                196
+              ]
+            },
+            {
+              "area": 23,
+              "bbox": [
+                297,
+                242,
+                302,
+                249
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": [
+            1
+          ]
+        },
+        {
+          "index": 5,
+          "bbox": [
+            158,
+            57,
+            353,
+            455
+          ],
+          "transparentPixels": 219274,
+          "opaquePixels": 35943,
+          "edgePixels": 6927,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 214,
+              "bbox": [
+                241,
+                62,
+                261,
+                81
+              ]
+            },
+            {
+              "area": 266,
+              "bbox": [
+                163,
+                150,
+                177,
+                196
+              ]
+            },
+            {
+              "area": 248,
+              "bbox": [
+                337,
+                156,
+                348,
+                196
+              ]
+            },
+            {
+              "area": 21,
+              "bbox": [
+                297,
+                242,
+                301,
+                249
+              ]
+            },
+            {
+              "area": 1,
+              "bbox": [
+                270,
+                252,
+                271,
+                253
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": []
+        }
+      ],
+      "residualGreenDiagnostic": {
+        "alphaThreshold": 32,
+        "greenExcessThreshold": 16,
+        "pixelCount": 15,
+        "interpretation": "A few isolated pixels; not an assertion of mathematically zero spill."
+      }
+    },
+    {
+      "input": "assets/source/iteration-03/waiting.png",
+      "inputSha256": "9565bdce8d1fd1126d8977c8f65b2090d69c84e78181f911298839fb90dc5f66",
+      "output": "assets/source/iteration-03-alpha/waiting.png",
+      "outputSha256": "6e8007a219dc72037e7441c93554226c62b18ecf1a2de1398c54577c619bba23",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "bbox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "transparentPixels": 220898,
+          "opaquePixels": 35299,
+          "edgePixels": 5947,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 211,
+              "bbox": [
+                242,
+                62,
+                262,
+                80
+              ]
+            },
+            {
+              "area": 253,
+              "bbox": [
+                164,
+                148,
+                178,
+                195
+              ]
+            },
+            {
+              "area": 239,
+              "bbox": [
+                338,
+                154,
+                349,
+                194
+              ]
+            },
+            {
+              "area": 1,
+              "bbox": [
+                270,
+                251,
+                271,
+                252
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 1,
+          "bbox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "transparentPixels": 220850,
+          "opaquePixels": 35371,
+          "edgePixels": 5923,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 201,
+              "bbox": [
+                242,
+                62,
+                261,
+                80
+              ]
+            },
+            {
+              "area": 256,
+              "bbox": [
+                163,
+                149,
+                177,
+                195
+              ]
+            },
+            {
+              "area": 234,
+              "bbox": [
+                338,
+                154,
+                349,
+                195
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 2,
+          "bbox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "transparentPixels": 220888,
+          "opaquePixels": 35321,
+          "edgePixels": 5935,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 208,
+              "bbox": [
+                242,
+                62,
+                261,
+                80
+              ]
+            },
+            {
+              "area": 257,
+              "bbox": [
+                164,
+                149,
+                178,
+                195
+              ]
+            },
+            {
+              "area": 237,
+              "bbox": [
+                338,
+                154,
+                349,
+                195
+              ]
+            },
+            {
+              "area": 1,
+              "bbox": [
+                177,
+                197,
+                178,
+                198
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 3,
+          "bbox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "transparentPixels": 220889,
+          "opaquePixels": 35335,
+          "edgePixels": 5920,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 214,
+              "bbox": [
+                242,
+                61,
+                262,
+                80
+              ]
+            },
+            {
+              "area": 255,
+              "bbox": [
+                164,
+                149,
+                178,
+                196
+              ]
+            },
+            {
+              "area": 238,
+              "bbox": [
+                338,
+                155,
+                349,
+                195
+              ]
+            },
+            {
+              "area": 1,
+              "bbox": [
+                270,
+                251,
+                271,
+                252
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 4,
+          "bbox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "transparentPixels": 220864,
+          "opaquePixels": 35353,
+          "edgePixels": 5927,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 210,
+              "bbox": [
+                241,
+                62,
+                261,
+                80
+              ]
+            },
+            {
+              "area": 263,
+              "bbox": [
+                163,
+                149,
+                177,
+                196
+              ]
+            },
+            {
+              "area": 238,
+              "bbox": [
+                338,
+                155,
+                349,
+                195
+              ]
+            },
+            {
+              "area": 1,
+              "bbox": [
+                270,
+                251,
+                271,
+                252
+              ]
+            },
+            {
+              "area": 1,
+              "bbox": [
+                272,
+                251,
+                273,
+                252
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 5,
+          "bbox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "transparentPixels": 220866,
+          "opaquePixels": 35365,
+          "edgePixels": 5913,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 212,
+              "bbox": [
+                242,
+                62,
+                262,
+                80
+              ]
+            },
+            {
+              "area": 258,
+              "bbox": [
+                163,
+                149,
+                178,
+                196
+              ]
+            },
+            {
+              "area": 238,
+              "bbox": [
+                338,
+                155,
+                349,
+                195
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": []
+        }
+      ],
+      "residualGreenDiagnostic": {
+        "alphaThreshold": 32,
+        "greenExcessThreshold": 16,
+        "pixelCount": 10,
+        "interpretation": "A few isolated pixels; not an assertion of mathematically zero spill."
+      }
+    },
+    {
+      "input": "assets/source/iteration-03/running.png",
+      "inputSha256": "81bc25d5b56c613ed6234a05bc93d80bac88bf2c74dff8b66427fc153fdee454",
+      "output": "assets/source/iteration-03-alpha/running.png",
+      "outputSha256": "9c7c2d5b6c867ff3296a7893ef5a4a8931c84454d444a6e4b6b0f8b7d00947aa",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "bbox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "transparentPixels": 220213,
+          "opaquePixels": 35846,
+          "edgePixels": 6085,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 217,
+              "bbox": [
+                242,
+                62,
+                262,
+                81
+              ]
+            },
+            {
+              "area": 269,
+              "bbox": [
+                163,
+                150,
+                177,
+                196
+              ]
+            },
+            {
+              "area": 249,
+              "bbox": [
+                338,
+                156,
+                350,
+                196
+              ]
+            },
+            {
+              "area": 12,
+              "bbox": [
+                177,
+                198,
+                180,
+                203
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 1,
+          "bbox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "transparentPixels": 220207,
+          "opaquePixels": 35927,
+          "edgePixels": 6010,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 213,
+              "bbox": [
+                242,
+                62,
+                262,
+                80
+              ]
+            },
+            {
+              "area": 265,
+              "bbox": [
+                163,
+                150,
+                177,
+                196
+              ]
+            },
+            {
+              "area": 243,
+              "bbox": [
+                338,
+                156,
+                349,
+                196
+              ]
+            },
+            {
+              "area": 11,
+              "bbox": [
+                177,
+                198,
+                180,
+                203
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 2,
+          "bbox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "transparentPixels": 220205,
+          "opaquePixels": 35919,
+          "edgePixels": 6020,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 216,
+              "bbox": [
+                242,
+                62,
+                262,
+                80
+              ]
+            },
+            {
+              "area": 272,
+              "bbox": [
+                163,
+                150,
+                177,
+                196
+              ]
+            },
+            {
+              "area": 246,
+              "bbox": [
+                338,
+                156,
+                349,
+                196
+              ]
+            },
+            {
+              "area": 13,
+              "bbox": [
+                176,
+                197,
+                179,
+                203
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 3,
+          "bbox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "transparentPixels": 220244,
+          "opaquePixels": 35884,
+          "edgePixels": 6016,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 219,
+              "bbox": [
+                242,
+                62,
+                262,
+                80
+              ]
+            },
+            {
+              "area": 272,
+              "bbox": [
+                163,
+                150,
+                177,
+                196
+              ]
+            },
+            {
+              "area": 246,
+              "bbox": [
+                338,
+                156,
+                349,
+                196
+              ]
+            },
+            {
+              "area": 12,
+              "bbox": [
+                177,
+                198,
+                180,
+                203
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 4,
+          "bbox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "transparentPixels": 220271,
+          "opaquePixels": 35786,
+          "edgePixels": 6087,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 220,
+              "bbox": [
+                241,
+                62,
+                262,
+                80
+              ]
+            },
+            {
+              "area": 263,
+              "bbox": [
+                163,
+                150,
+                177,
+                196
+              ]
+            },
+            {
+              "area": 246,
+              "bbox": [
+                338,
+                156,
+                349,
+                196
+              ]
+            },
+            {
+              "area": 13,
+              "bbox": [
+                177,
+                198,
+                180,
+                203
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 5,
+          "bbox": [
+            158,
+            56,
+            354,
+            455
+          ],
+          "transparentPixels": 220288,
+          "opaquePixels": 35787,
+          "edgePixels": 6069,
+          "checkerLevels": null,
+          "removedBackgroundHoles": [
+            {
+              "area": 223,
+              "bbox": [
+                242,
+                62,
+                262,
+                81
+              ]
+            },
+            {
+              "area": 272,
+              "bbox": [
+                163,
+                150,
+                177,
+                196
+              ]
+            },
+            {
+              "area": 249,
+              "bbox": [
+                338,
+                156,
+                349,
+                196
+              ]
+            },
+            {
+              "area": 9,
+              "bbox": [
+                177,
+                198,
+                180,
+                203
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 0,
+          "removedSpeckSizes": []
+        }
+      ],
+      "residualGreenDiagnostic": {
+        "alphaThreshold": 32,
+        "greenExcessThreshold": 16,
+        "pixelCount": 12,
+        "interpretation": "A few isolated pixels; not an assertion of mathematically zero spill."
+      }
+    }
+  ],
+  "previews": [
+    "reviews/iteration-03-alpha/contact-dark.png",
+    "reviews/iteration-03-alpha/contact-light.png",
+    "reviews/iteration-03-alpha/first-frame-detail.png"
+  ],
+  "visualReview": {
+    "status": "reviewed-alpha-only",
+    "reviewedViews": [
+      "reviews/iteration-03-alpha/contact-dark.png",
+      "reviews/iteration-03-alpha/contact-light.png",
+      "reviews/iteration-03-alpha/first-frame-detail.png"
+    ],
+    "method": "view_image dark/light contact sheets and first-frame detail",
+    "characterIdentityApproved": false,
+    "packagingOrInstallPerformed": false,
+    "notes": [
+      "No obvious green fringe in the reviewed dark/light views; face and blouse remain solid.",
+      "Hair loops and leg gaps are transparent; no visible silhouette damage.",
+      "Alpha outputs locked for native alignment; identity review is separate."
+    ]
+  },
+  "limitations": [
+    "Checker removal is heuristic, especially for enclosed gray/white details.",
+    "The outer-hole guard protects central face/clothing; inspect hair loops and gaps on both backgrounds.",
+    "Fixed-color mattes need a key not shared with character details.",
+    "No frame alignment, creative redrawing, packaging, installation, or app-state changes are performed."
+  ]
+}

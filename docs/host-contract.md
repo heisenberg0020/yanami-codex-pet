@@ -2,6 +2,10 @@
 
 本项目在 2026-09-10 只读核对了本机 ChatGPT 桌面应用内的 Codex 实现。以下是该版本的实际加载和播放规则，不能承诺未来版本保持相同，也不把第三方预览器当作官方规范。
 
+本机包信息：`CFBundleIdentifier=com.openai.codex`，版本 `26.903.61454`，build `8378`，macOS `26.5.1`。这些信息来自应用 `Info.plist` 与系统版本只读查询，并不代表已在该版本中完成候选加载或视觉验收。
+
+核对宿主：ChatGPT.app `26.903.61454`，build `8378`，bundle identifier `com.openai.codex`，macOS `26.5.1`。
+
 核对位置：`Contents/Resources/app.asar` 内 `.vite/build/src-J2PvP4xj.js` 的 `J1 / e0 / Z1`，以及 `webview/assets/app-initial-1b87ae739476.js` 的 `LN / mer / ser / Cer`。本项目不调用这些内部接口，也不修改应用。
 
 ## 包与像素布局

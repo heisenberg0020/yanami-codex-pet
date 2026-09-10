@@ -1,0 +1,1447 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Alpha extraction review only; character identity is not approved",
+  "method": "border-connected color matte + guarded enclosed holes + bounded edge-color extension",
+  "parameters": {
+    "output_dir": "assets/source/iteration-02-alpha",
+    "report": "reviews/iteration-02-alpha.json",
+    "grid": "3x2",
+    "background": "checker",
+    "max_chroma": 14,
+    "min_gray": 90,
+    "tolerance": 55,
+    "spill_threshold": 16,
+    "min_hole": 18,
+    "max_hole": 1800,
+    "hole_zones": "outer",
+    "min_component": 20,
+    "feather": 0.45
+  },
+  "implementationSha256": "b6a8499985bc281b9f96629abd64c2e4f38ca2da6b01a6320d311c5894bff126",
+  "runtime": {
+    "python": "3.9.6",
+    "pillow": "11.3.0",
+    "numpy": "2.0.2"
+  },
+  "records": [
+    {
+      "input": "assets/source/iteration-02/idle.png",
+      "inputSha256": "32ab21ee199c98a4e5bbd723b18f5c0e527e261c6909b9f8b7c2b62beb9fb76a",
+      "output": "assets/source/iteration-02-alpha/idle.png",
+      "outputSha256": "8a6462e0f982b044c0d638c8af39506007083a44d5cf2c1058880c911d41eb7e",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "bbox": [
+            139,
+            27,
+            401,
+            506
+          ],
+          "transparentPixels": 191616,
+          "opaquePixels": 63537,
+          "edgePixels": 6991,
+          "checkerLevels": [
+            139.4,
+            198.14
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 284,
+              "bbox": [
+                260,
+                38,
+                287,
+                54
+              ]
+            },
+            {
+              "area": 30,
+              "bbox": [
+                242,
+                44,
+                247,
+                56
+              ]
+            },
+            {
+              "area": 169,
+              "bbox": [
+                146,
+                151,
+                161,
+                187
+              ]
+            },
+            {
+              "area": 162,
+              "bbox": [
+                380,
+                154,
+                393,
+                189
+              ]
+            },
+            {
+              "area": 717,
+              "bbox": [
+                263,
+                401,
+                275,
+                484
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 15,
+          "removedSpeckSizes": [
+            1,
+            1,
+            1,
+            5,
+            4
+          ]
+        },
+        {
+          "index": 1,
+          "bbox": [
+            125,
+            27,
+            387,
+            506
+          ],
+          "transparentPixels": 192055,
+          "opaquePixels": 63245,
+          "edgePixels": 6844,
+          "checkerLevels": [
+            140.88,
+            197.97
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 289,
+              "bbox": [
+                246,
+                39,
+                272,
+                56
+              ]
+            },
+            {
+              "area": 135,
+              "bbox": [
+                132,
+                156,
+                143,
+                186
+              ]
+            },
+            {
+              "area": 141,
+              "bbox": [
+                368,
+                157,
+                380,
+                188
+              ]
+            },
+            {
+              "area": 727,
+              "bbox": [
+                250,
+                400,
+                261,
+                489
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 16,
+          "removedSpeckSizes": [
+            3,
+            4,
+            4,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "index": 2,
+          "bbox": [
+            112,
+            28,
+            375,
+            506
+          ],
+          "transparentPixels": 191474,
+          "opaquePixels": 63760,
+          "edgePixels": 6910,
+          "checkerLevels": [
+            140.27,
+            198.85
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 312,
+              "bbox": [
+                233,
+                40,
+                262,
+                57
+              ]
+            },
+            {
+              "area": 173,
+              "bbox": [
+                354,
+                155,
+                368,
+                191
+              ]
+            },
+            {
+              "area": 196,
+              "bbox": [
+                120,
+                159,
+                133,
+                193
+              ]
+            },
+            {
+              "area": 700,
+              "bbox": [
+                237,
+                401,
+                248,
+                485
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 17,
+          "removedSpeckSizes": [
+            6,
+            4,
+            1,
+            3,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "index": 3,
+          "bbox": [
+            139,
+            15,
+            403,
+            487
+          ],
+          "transparentPixels": 192553,
+          "opaquePixels": 62592,
+          "edgePixels": 6999,
+          "checkerLevels": [
+            138.75,
+            198.44
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 299,
+              "bbox": [
+                261,
+                27,
+                288,
+                42
+              ]
+            },
+            {
+              "area": 41,
+              "bbox": [
+                243,
+                31,
+                249,
+                42
+              ]
+            },
+            {
+              "area": 192,
+              "bbox": [
+                147,
+                137,
+                161,
+                174
+              ]
+            },
+            {
+              "area": 212,
+              "bbox": [
+                383,
+                144,
+                396,
+                179
+              ]
+            },
+            {
+              "area": 687,
+              "bbox": [
+                264,
+                382,
+                276,
+                464
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 14,
+          "removedSpeckSizes": [
+            2,
+            3,
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "index": 4,
+          "bbox": [
+            124,
+            15,
+            388,
+            487
+          ],
+          "transparentPixels": 192439,
+          "opaquePixels": 62686,
+          "edgePixels": 7019,
+          "checkerLevels": [
+            141.27,
+            198.17
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 304,
+              "bbox": [
+                246,
+                27,
+                275,
+                43
+              ]
+            },
+            {
+              "area": 29,
+              "bbox": [
+                230,
+                30,
+                234,
+                43
+              ]
+            },
+            {
+              "area": 230,
+              "bbox": [
+                366,
+                138,
+                382,
+                179
+              ]
+            },
+            {
+              "area": 199,
+              "bbox": [
+                132,
+                139,
+                147,
+                174
+              ]
+            },
+            {
+              "area": 22,
+              "bbox": [
+                140,
+                183,
+                143,
+                196
+              ]
+            },
+            {
+              "area": 713,
+              "bbox": [
+                250,
+                383,
+                262,
+                470
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 15,
+          "removedSpeckSizes": [
+            1,
+            6,
+            2,
+            1,
+            6,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "index": 5,
+          "bbox": [
+            112,
+            15,
+            375,
+            487
+          ],
+          "transparentPixels": 192672,
+          "opaquePixels": 62599,
+          "edgePixels": 6873,
+          "checkerLevels": [
+            139.86,
+            198.68
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 303,
+              "bbox": [
+                234,
+                27,
+                261,
+                42
+              ]
+            },
+            {
+              "area": 27,
+              "bbox": [
+                217,
+                32,
+                221,
+                41
+              ]
+            },
+            {
+              "area": 200,
+              "bbox": [
+                354,
+                140,
+                368,
+                177
+              ]
+            },
+            {
+              "area": 141,
+              "bbox": [
+                120,
+                141,
+                131,
+                169
+              ]
+            },
+            {
+              "area": 693,
+              "bbox": [
+                237,
+                383,
+                249,
+                467
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 15,
+          "removedSpeckSizes": [
+            1,
+            2,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "input": "assets/source/iteration-02/waiting.png",
+      "inputSha256": "162b74cfc7c57f4c074679268e269651230510422e2369d07192c1ddebb46257",
+      "output": "assets/source/iteration-02-alpha/waiting.png",
+      "outputSha256": "9525f83426d4093678e170d97acb3d1e73fe9efe25ff5bd5985b4f5fda015501",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "bbox": [
+            140,
+            17,
+            406,
+            502
+          ],
+          "transparentPixels": 188191,
+          "opaquePixels": 67058,
+          "edgePixels": 6895,
+          "checkerLevels": [
+            204.55,
+            250.3
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 321,
+              "bbox": [
+                250,
+                29,
+                282,
+                45
+              ]
+            },
+            {
+              "area": 133,
+              "bbox": [
+                382,
+                132,
+                399,
+                169
+              ]
+            },
+            {
+              "area": 86,
+              "bbox": [
+                146,
+                145,
+                162,
+                183
+              ]
+            },
+            {
+              "area": 117,
+              "bbox": [
+                148,
+                178,
+                157,
+                212
+              ]
+            },
+            {
+              "area": 62,
+              "bbox": [
+                386,
+                189,
+                394,
+                207
+              ]
+            },
+            {
+              "area": 43,
+              "bbox": [
+                177,
+                244,
+                184,
+                258
+              ]
+            },
+            {
+              "area": 266,
+              "bbox": [
+                281,
+                431,
+                288,
+                482
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 27,
+          "removedSpeckSizes": [
+            1
+          ]
+        },
+        {
+          "index": 1,
+          "bbox": [
+            120,
+            26,
+            382,
+            502
+          ],
+          "transparentPixels": 189207,
+          "opaquePixels": 65882,
+          "edgePixels": 7055,
+          "checkerLevels": [
+            205.2,
+            249.1
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 305,
+              "bbox": [
+                208,
+                37,
+                238,
+                55
+              ]
+            },
+            {
+              "area": 138,
+              "bbox": [
+                355,
+                123,
+                374,
+                159
+              ]
+            },
+            {
+              "area": 105,
+              "bbox": [
+                125,
+                158,
+                139,
+                199
+              ]
+            },
+            {
+              "area": 53,
+              "bbox": [
+                367,
+                177,
+                372,
+                194
+              ]
+            },
+            {
+              "area": 130,
+              "bbox": [
+                129,
+                192,
+                140,
+                228
+              ]
+            },
+            {
+              "area": 47,
+              "bbox": [
+                162,
+                256,
+                169,
+                269
+              ]
+            },
+            {
+              "area": 31,
+              "bbox": [
+                330,
+                380,
+                336,
+                388
+              ]
+            },
+            {
+              "area": 307,
+              "bbox": [
+                265,
+                417,
+                272,
+                481
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 21,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 2,
+          "bbox": [
+            120,
+            25,
+            384,
+            502
+          ],
+          "transparentPixels": 189096,
+          "opaquePixels": 66015,
+          "edgePixels": 7033,
+          "checkerLevels": [
+            205.33,
+            250.3
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 294,
+              "bbox": [
+                211,
+                37,
+                241,
+                55
+              ]
+            },
+            {
+              "area": 134,
+              "bbox": [
+                357,
+                124,
+                376,
+                160
+              ]
+            },
+            {
+              "area": 102,
+              "bbox": [
+                126,
+                158,
+                140,
+                196
+              ]
+            },
+            {
+              "area": 56,
+              "bbox": [
+                367,
+                177,
+                374,
+                195
+              ]
+            },
+            {
+              "area": 116,
+              "bbox": [
+                130,
+                192,
+                139,
+                226
+              ]
+            },
+            {
+              "area": 42,
+              "bbox": [
+                162,
+                256,
+                170,
+                268
+              ]
+            },
+            {
+              "area": 32,
+              "bbox": [
+                331,
+                380,
+                336,
+                389
+              ]
+            },
+            {
+              "area": 324,
+              "bbox": [
+                265,
+                417,
+                273,
+                482
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 19,
+          "removedSpeckSizes": [
+            1,
+            3
+          ]
+        },
+        {
+          "index": 3,
+          "bbox": [
+            139,
+            19,
+            404,
+            498
+          ],
+          "transparentPixels": 188593,
+          "opaquePixels": 66693,
+          "edgePixels": 6858,
+          "checkerLevels": [
+            203.68,
+            250.41
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 302,
+              "bbox": [
+                235,
+                30,
+                265,
+                48
+              ]
+            },
+            {
+              "area": 155,
+              "bbox": [
+                378,
+                123,
+                397,
+                159
+              ]
+            },
+            {
+              "area": 85,
+              "bbox": [
+                145,
+                149,
+                158,
+                184
+              ]
+            },
+            {
+              "area": 53,
+              "bbox": [
+                386,
+                178,
+                393,
+                196
+              ]
+            },
+            {
+              "area": 114,
+              "bbox": [
+                148,
+                180,
+                156,
+                215
+              ]
+            },
+            {
+              "area": 43,
+              "bbox": [
+                176,
+                245,
+                184,
+                258
+              ]
+            },
+            {
+              "area": 271,
+              "bbox": [
+                281,
+                422,
+                288,
+                476
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 25,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 4,
+          "bbox": [
+            129,
+            15,
+            393,
+            498
+          ],
+          "transparentPixels": 188952,
+          "opaquePixels": 66192,
+          "edgePixels": 7000,
+          "checkerLevels": [
+            203.14,
+            249.41
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 324,
+              "bbox": [
+                237,
+                26,
+                268,
+                43
+              ]
+            },
+            {
+              "area": 137,
+              "bbox": [
+                370,
+                130,
+                386,
+                168
+              ]
+            },
+            {
+              "area": 78,
+              "bbox": [
+                136,
+                140,
+                151,
+                176
+              ]
+            },
+            {
+              "area": 112,
+              "bbox": [
+                137,
+                174,
+                146,
+                206
+              ]
+            },
+            {
+              "area": 46,
+              "bbox": [
+                372,
+                187,
+                380,
+                204
+              ]
+            },
+            {
+              "area": 21,
+              "bbox": [
+                347,
+                235,
+                354,
+                244
+              ]
+            },
+            {
+              "area": 46,
+              "bbox": [
+                163,
+                238,
+                170,
+                252
+              ]
+            },
+            {
+              "area": 31,
+              "bbox": [
+                330,
+                376,
+                336,
+                384
+              ]
+            },
+            {
+              "area": 302,
+              "bbox": [
+                265,
+                412,
+                272,
+                477
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 22,
+          "removedSpeckSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "index": 5,
+          "bbox": [
+            132,
+            15,
+            396,
+            497
+          ],
+          "transparentPixels": 189236,
+          "opaquePixels": 66099,
+          "edgePixels": 6809,
+          "checkerLevels": [
+            203.95,
+            250.4
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 305,
+              "bbox": [
+                241,
+                28,
+                272,
+                44
+              ]
+            },
+            {
+              "area": 143,
+              "bbox": [
+                373,
+                134,
+                390,
+                173
+              ]
+            },
+            {
+              "area": 83,
+              "bbox": [
+                138,
+                142,
+                152,
+                175
+              ]
+            },
+            {
+              "area": 99,
+              "bbox": [
+                139,
+                174,
+                147,
+                206
+              ]
+            },
+            {
+              "area": 30,
+              "bbox": [
+                378,
+                190,
+                382,
+                203
+              ]
+            },
+            {
+              "area": 41,
+              "bbox": [
+                165,
+                239,
+                171,
+                252
+              ]
+            },
+            {
+              "area": 20,
+              "bbox": [
+                350,
+                239,
+                355,
+                245
+              ]
+            },
+            {
+              "area": 301,
+              "bbox": [
+                265,
+                423,
+                273,
+                479
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 27,
+          "removedSpeckSizes": []
+        }
+      ]
+    },
+    {
+      "input": "assets/source/iteration-02/running.png",
+      "inputSha256": "e13f5255b178bbbaa595308ec912c9793641402c52f90c38d4f0d2545670171d",
+      "output": "assets/source/iteration-02-alpha/running.png",
+      "outputSha256": "838b9634e0a8fbd734d8029d978a89e72ffd47a7429dafd4a48f42e2ea859d64",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "bbox": [
+            139,
+            27,
+            373,
+            492
+          ],
+          "transparentPixels": 199859,
+          "opaquePixels": 56266,
+          "edgePixels": 6019,
+          "checkerLevels": [
+            167.01,
+            228.0
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 161,
+              "bbox": [
+                242,
+                38,
+                262,
+                50
+              ]
+            },
+            {
+              "area": 90,
+              "bbox": [
+                357,
+                154,
+                368,
+                187
+              ]
+            },
+            {
+              "area": 766,
+              "bbox": [
+                248,
+                390,
+                262,
+                473
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 16,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 1,
+          "bbox": [
+            139,
+            27,
+            373,
+            492
+          ],
+          "transparentPixels": 199878,
+          "opaquePixels": 56128,
+          "edgePixels": 6138,
+          "checkerLevels": [
+            167.33,
+            227.11
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 167,
+              "bbox": [
+                242,
+                38,
+                262,
+                50
+              ]
+            },
+            {
+              "area": 23,
+              "bbox": [
+                357,
+                155,
+                364,
+                167
+              ]
+            },
+            {
+              "area": 35,
+              "bbox": [
+                146,
+                163,
+                152,
+                178
+              ]
+            },
+            {
+              "area": 53,
+              "bbox": [
+                363,
+                168,
+                368,
+                188
+              ]
+            },
+            {
+              "area": 783,
+              "bbox": [
+                248,
+                390,
+                263,
+                473
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 17,
+          "removedSpeckSizes": []
+        },
+        {
+          "index": 2,
+          "bbox": [
+            107,
+            27,
+            341,
+            492
+          ],
+          "transparentPixels": 199801,
+          "opaquePixels": 56296,
+          "edgePixels": 6047,
+          "checkerLevels": [
+            167.46,
+            227.62
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 164,
+              "bbox": [
+                211,
+                38,
+                230,
+                50
+              ]
+            },
+            {
+              "area": 89,
+              "bbox": [
+                325,
+                154,
+                336,
+                186
+              ]
+            },
+            {
+              "area": 752,
+              "bbox": [
+                216,
+                390,
+                230,
+                473
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 15,
+          "removedSpeckSizes": [
+            1,
+            3,
+            1
+          ]
+        },
+        {
+          "index": 3,
+          "bbox": [
+            139,
+            26,
+            373,
+            491
+          ],
+          "transparentPixels": 199885,
+          "opaquePixels": 56000,
+          "edgePixels": 6259,
+          "checkerLevels": [
+            167.09,
+            227.69
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 165,
+              "bbox": [
+                242,
+                37,
+                262,
+                50
+              ]
+            },
+            {
+              "area": 87,
+              "bbox": [
+                357,
+                155,
+                368,
+                185
+              ]
+            },
+            {
+              "area": 45,
+              "bbox": [
+                146,
+                159,
+                154,
+                180
+              ]
+            },
+            {
+              "area": 25,
+              "bbox": [
+                354,
+                185,
+                359,
+                196
+              ]
+            },
+            {
+              "area": 753,
+              "bbox": [
+                248,
+                390,
+                262,
+                473
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 16,
+          "removedSpeckSizes": [
+            1
+          ]
+        },
+        {
+          "index": 4,
+          "bbox": [
+            139,
+            27,
+            373,
+            491
+          ],
+          "transparentPixels": 199893,
+          "opaquePixels": 56089,
+          "edgePixels": 6162,
+          "checkerLevels": [
+            166.82,
+            227.47
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 160,
+              "bbox": [
+                242,
+                38,
+                262,
+                50
+              ]
+            },
+            {
+              "area": 50,
+              "bbox": [
+                146,
+                158,
+                155,
+                180
+              ]
+            },
+            {
+              "area": 83,
+              "bbox": [
+                359,
+                159,
+                368,
+                186
+              ]
+            },
+            {
+              "area": 25,
+              "bbox": [
+                154,
+                196,
+                158,
+                205
+              ]
+            },
+            {
+              "area": 767,
+              "bbox": [
+                248,
+                390,
+                263,
+                473
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 17,
+          "removedSpeckSizes": [
+            1,
+            1
+          ]
+        },
+        {
+          "index": 5,
+          "bbox": [
+            107,
+            27,
+            341,
+            491
+          ],
+          "transparentPixels": 199837,
+          "opaquePixels": 56069,
+          "edgePixels": 6238,
+          "checkerLevels": [
+            166.25,
+            227.84
+          ],
+          "removedBackgroundHoles": [
+            {
+              "area": 162,
+              "bbox": [
+                211,
+                37,
+                230,
+                50
+              ]
+            },
+            {
+              "area": 97,
+              "bbox": [
+                325,
+                154,
+                336,
+                186
+              ]
+            },
+            {
+              "area": 23,
+              "bbox": [
+                114,
+                167,
+                118,
+                180
+              ]
+            },
+            {
+              "area": 30,
+              "bbox": [
+                322,
+                184,
+                327,
+                199
+              ]
+            },
+            {
+              "area": 754,
+              "bbox": [
+                216,
+                390,
+                230,
+                473
+              ]
+            }
+          ],
+          "protectedInteriorRegions": 15,
+          "removedSpeckSizes": []
+        }
+      ]
+    }
+  ],
+  "previews": [
+    "reviews/iteration-02-alpha/contact-dark.png",
+    "reviews/iteration-02-alpha/contact-light.png",
+    "reviews/iteration-02-alpha/first-frame-detail.png"
+  ],
+  "visualReview": {
+    "status": "reviewed-alpha-only",
+    "reviewedViews": [
+      "reviews/iteration-02-alpha/contact-dark.png",
+      "reviews/iteration-02-alpha/contact-light.png",
+      "reviews/iteration-02-alpha/first-frame-detail.png"
+    ],
+    "method": "view_image dark/light contact sheets and first-frame detail",
+    "characterIdentityApproved": false,
+    "packagingOrInstallPerformed": false,
+    "notes": [
+      "Real RGBA replaces baked checkerboard; white blouse and face preserved.",
+      "Character style remains rejected for the refined package."
+    ]
+  },
+  "limitations": [
+    "Checker removal is heuristic, especially for enclosed gray/white details.",
+    "The outer-hole guard protects central face/clothing; inspect hair loops and gaps on both backgrounds.",
+    "Fixed-color mattes need a key not shared with character details.",
+    "No frame alignment, creative redrawing, packaging, installation, or app-state changes are performed."
+  ]
+}

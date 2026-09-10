@@ -1,20 +1,26 @@
 {
   "schemaVersion": 1,
   "date": "2026-09-10",
-  "phase": "art-revision",
-  "releaseStatus": "not-ready",
-  "latestArtIteration": "iteration-02",
-  "latestArtDecision": "rejected",
-  "candidatePackage": null,
-  "installedCandidate": false,
+  "phase": "native-acceptance-pending",
+  "releaseStatus": "candidate",
+  "repositoryVisibility": "public",
+  "latestArtIteration": "iteration-03",
+  "latestArtDecision": "static-review-pass",
+  "candidatePackage": "pets/yanami-anna-refined",
+  "candidateId": "candidate-001",
+  "atlasSha256": "ded4a7e49b623aa997494fbd6069b9a1e25ff1011c598c40bd39da85fb114afe",
+  "installedCandidate": true,
+  "selectedInCodex": "not-confirmed",
   "baselineUnchanged": true,
-  "automatedTests": {"pythonPassed": 12, "previewPassed": 6},
-  "previewBrowserReview": "pass-for-baseline-and-controls",
-  "codexAcceptance": "not-run",
+  "automatedTests": {
+    "pythonPassed": 17,
+    "previewPassed": 6
+  },
+  "previewBrowserReview": "in-progress",
+  "codexAcceptance": "not-run-awaiting-user",
   "nextActions": [
-    "Produce truly transparent source frames with baseline-compatible character identity",
-    "Validate source frames and build candidate",
-    "Review same-size comparisons, timing, and transitions",
-    "Install separately and conduct real Codex acceptance"
+    "Complete browser review of the installed candidate hash",
+    "User selects 八奈见杏菜·精修 and reports actual Codex effect",
+    "Revise the affected frames if actual use shows problems"
   ]
 }

@@ -1,0 +1,47 @@
+{
+  "candidate": "candidate-001",
+  "date": "2026-09-10",
+  "upstreamCommit": "53fb9ecf309ae404e608226e6f7994c2a1eb910d",
+  "imageTool": "built-in image_gen",
+  "localImageProcessingAuthorized": true,
+  "promptFiles": [
+    "assets/source/iteration-03/prompts.json",
+    "assets/source/iteration-03/prompts-extra.json"
+  ],
+  "inputsAndTools": {
+    "assets/source/native-reference/identity-six.png": "0cc8b8dddf909f3e0b1b82b4ef6f6b3391804ed485635369300530a025193d98",
+    "assets/upstream/yanami-anna/spritesheet.webp": "41d2ed83cdd7285a8cbf441fc530b11bce7e6e0c0345192aaf3b2e6a19fa3fe3",
+    "tools/prepare_reference.py": "09e794e02027633c45252a177a757c3692e7adb6b5b37dbebf7225fdabee72af",
+    "tools/extract_matte.py": "b6a8499985bc281b9f96629abd64c2e4f38ca2da6b01a6320d311c5894bff126",
+    "tools/align_frames.py": "dba944f8879adf8f791398092e7180a7d3335f745af72ae8e777aa2462c26709",
+    "tools/pet_tool.py": "f86e763778039f1daa99c2f0801c8245c12a061e4a23f5d771adb9c490852dc7",
+    "assets/source/iteration-03/idle.png": "47f8a0e41d35d844fac4bf4767dd0c70a2000afe9976e1656e1f5bb5227055e9",
+    "assets/source/iteration-03/waiting.png": "9565bdce8d1fd1126d8977c8f65b2090d69c84e78181f911298839fb90dc5f66",
+    "assets/source/iteration-03/running.png": "81bc25d5b56c613ed6234a05bc93d80bac88bf2c74dff8b66427fc153fdee454",
+    "assets/source/iteration-03-alpha/idle.png": "be757c17a75c6e5ac90bb9a7dcb7b3b4c1572d208aab796067f3e2fe998d75c6",
+    "assets/source/iteration-03-alpha/waiting.png": "6e8007a219dc72037e7441c93554226c62b18ecf1a2de1398c54577c619bba23",
+    "assets/source/iteration-03-alpha/running.png": "9c7c2d5b6c867ff3296a7893ef5a4a8931c84454d444a6e4b6b0f8b7d00947aa",
+    "assets/source/iteration-03-native/idle.png": "fb23e249adf941141ecc453633bcb53dfb5d233e1eb3318a9697edc9fd0d12c5",
+    "assets/source/iteration-03-native/waiting.png": "753e842484499288c06efc01ca2732c93a2357d85a25418fdf020c499fe52621",
+    "assets/source/iteration-03-native/running.png": "f4cfa1dcf3145fd8f3c64403f61f72627edd556b33806f7cf6e6e4b962de4df0"
+  },
+  "buildCommand": "python3 tools/pet_tool.py build --base assets/upstream/yanami-anna/spritesheet.webp --output pets/yanami-anna-refined --replace idle assets/source/iteration-03-native/idle.png 3x2 --replace waiting assets/source/iteration-03-native/waiting.png 3x2 --replace running assets/source/iteration-03-native/running.png 3x2 --fit native",
+  "atlasSha256": "ded4a7e49b623aa997494fbd6069b9a1e25ff1011c598c40bd39da85fb114afe",
+  "host": {
+    "bundleId": "com.openai.codex",
+    "version": "26.903.61454",
+    "build": "8378",
+    "macOS": "26.5.1",
+    "displayScale": "not-recorded"
+  },
+  "installation": {
+    "directory": "$CODEX_HOME/pets/yanami-anna-refined",
+    "selectionChanged": false,
+    "files": {
+      "pet.json": "014ae7c89c629a66cca276302120a684d5be224a59b47536250514151fe830cc",
+      "spritesheet.webp": "ded4a7e49b623aa997494fbd6069b9a1e25ff1011c598c40bd39da85fb114afe"
+    },
+    "verifiedHashesMatch": true,
+    "originalAtlasUnchanged": true
+  }
+}

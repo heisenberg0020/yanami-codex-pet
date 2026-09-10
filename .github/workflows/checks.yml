@@ -33,6 +33,15 @@ jobs:
         run: |
           if [ -f pets/yanami-anna-refined/pet.json ]; then
             python tools/pet_tool.py validate pets/yanami-anna-refined
+            python tools/pet_tool.py build \
+              --base assets/upstream/yanami-anna/spritesheet.webp \
+              --output "$RUNNER_TEMP/yanami-candidate" \
+              --replace idle assets/source/iteration-03-native/idle.png 3x2 \
+              --replace waiting assets/source/iteration-03-native/waiting.png 3x2 \
+              --replace running assets/source/iteration-03-native/running.png 3x2 \
+              --fit native
+            python -c 'import sys; from PIL import Image; a,b=[Image.open(p).convert("RGBA") for p in sys.argv[1:]]; assert a.size==b.size and a.tobytes()==b.tobytes(), "Committed candidate differs from rebuilt pixels"' \
+              pets/yanami-anna-refined/spritesheet.webp "$RUNNER_TEMP/yanami-candidate/spritesheet.webp"
           else
             echo 'No candidate package: art remains under review. This is not a visual acceptance.'
           fi

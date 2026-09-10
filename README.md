@@ -2,7 +2,11 @@
 
 让八奈见杏菜在 Codex 里保持原来的样子，同时拥有更稳定的脸型、更自然的动作和可重复检查的制作流程。
 
-**当前状态：v0.1 开发中，尚无通过审阅的精修候选包。** 两轮生成稿均因透明背景失败退回；另有脸型/比例相容性问题需要修订。设计、构建/检查/安装工具与对照预览器已就绪，12 项工具测试和 6 项时序测试通过。当前精确状态见 [project-status.json](reviews/project-status.json)，失败原因见 [第一轮](reviews/iteration-01.md)、[独立视觉审阅](reviews/visual-iteration-01.md)与[第二轮](reviews/iteration-02.md)。
+**当前状态：candidate-001 已构建并安装到本机，等待真实 Codex 反馈。** 第三轮回到原版参考，完成真正的透明背景、统一尺度与三个状态的精修；17 项制作工具测试和 6 项时序测试通过。尚未宣称完成实机验收或正式发布。当前精确状态见 [project-status.json](reviews/project-status.json)，本轮记录见 [candidate-001](reviews/candidate-001/review.md)。
+
+![candidate-001 三种状态的原生尺寸静态预览；不是实机截图](reviews/candidate-001/overview.png)
+
+前两轮因背景和角色一致性问题退回，保留[第一轮](reviews/iteration-01.md)、[独立视觉审阅](reviews/visual-iteration-01.md)与[第二轮](reviews/iteration-02.md)记录。第三轮的完整参数、提示词和处理步骤见[制作流程](docs/制作流程.md)。
 
 这一版优先精修待机、等待和工作三个状态；是否适合长期使用，要以预览审阅和真实 Codex 验收为准。自动检查通过、成功安装，都不等于视觉验收通过。验收记录统一保存在 `reviews/`，没有记录的项目视为未验收。
 
@@ -43,18 +47,19 @@ python3 tools/pet_tool.py build --help
 ```bash
 python3 tools/pet_tool.py build \
   --base assets/upstream/yanami-anna/spritesheet.webp \
-  --output pets/yanami-anna-refined
+  --output work/baseline-check
 ```
 
-三个精修状态分别使用一张 **3 列 × 2 行的六帧透明 PNG**，按先左到右、再上到下读取。以下文件名是示例，替换为已经通过源素材审阅的实际路径，并在审阅记录里保存准确路径和哈希。已被退回的生成稿不能直接用于候选构建：
+三个精修状态分别使用一张 **3 列 × 2 行的六帧透明 PNG**，按先左到右、再上到下读取。仓库已保存 candidate-001 的原生尺寸素材，以下命令重建本轮候选。已被退回的生成稿不能直接用于候选构建：
 
 ```bash
 python3 tools/pet_tool.py build \
   --base assets/upstream/yanami-anna/spritesheet.webp \
   --output pets/yanami-anna-refined \
-  --replace idle ./idle-six-frames.png 3x2 \
-  --replace waiting ./waiting-six-frames.png 3x2 \
-  --replace running ./running-six-frames.png 3x2
+  --replace idle assets/source/iteration-03-native/idle.png 3x2 \
+  --replace waiting assets/source/iteration-03-native/waiting.png 3x2 \
+  --replace running assets/source/iteration-03-native/running.png 3x2 \
+  --fit native
 ```
 
 工具保留其余状态的基线素材，按本次核对的 Codex v2 帧数清空不用的格子。默认 `--fit contain` 按源格比例适配；已经制作为每格 192 × 208 的素材可使用 `--fit native`。不能依靠逐帧随意缩放掩盖人物比例不一致。
