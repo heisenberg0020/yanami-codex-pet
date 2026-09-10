@@ -1,7 +1,7 @@
 // Per-tab recovery journal. Write before POST; erase only after a definitive response.
 const KEY = 'yanami-snack-club.pending-action.v1';
 const SNACK_IDS = ['pudding', 'melonpan', 'strawberry-milk', 'onigiri', 'taiyaki', 'dango'];
-const EMPTY_ACTIONS = ['pause', 'resume', 'cancel', 'claim'];
+const EMPTY_ACTIONS = ['pause', 'resume', 'cancel', 'claim', 'claimCodex'];
 
 function invalid(message = '待确认操作记录损坏，无法安全发送。请先处理这份记录。') {
   return Object.assign(new Error(message), { code: 'INVALID_PENDING_ACTION' });

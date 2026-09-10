@@ -4,6 +4,8 @@ import { dirname, extname, isAbsolute, relative, resolve, sep } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createStore, DEFAULT_DATA_FILE } from './store.mjs';
 import { catalog } from './catalog.mjs';
+import { codexView } from './codex.mjs';
+import { createCodexIngestor } from './codex-ingest.mjs';
 
 export const SERVICE_ID = 'yanami-snack-club-v1';
 export const DEFAULT_PORT = 17653;
@@ -105,8 +107,10 @@ async function serveStatic(req, res, pathname, distDir) {
 }
 
 /** Creates a server without listening. startServer is the loopback-only launcher. */
-export async function createServer({ store, dataFile = DEFAULT_DATA_FILE, distDir = DEFAULT_DIST_DIR, now = Date.now, bodyLimit = BODY_LIMIT } = {}) {
+export async function createServer({ store, dataFile = DEFAULT_DATA_FILE, distDir = DEFAULT_DIST_DIR, now = Date.now, bodyLimit = BODY_LIMIT, codexSpoolDir } = {}) {
   store ??= await createStore({ dataFile, now });
+  const ingestor = createCodexIngestor({ store, spoolDir: codexSpoolDir ?? resolve(dirname(store.dataFile || dataFile), 'codex-events'), now });
+  const summary = (state, at) => ({ ...codexView(state.codex, state.receipts, at, ingestor.installed), ...(ingestor.notice ? { notice: ingestor.notice } : {}) });
   const server = http.createServer(async (req, res) => {
     headers(res);
     let isAction = false;
@@ -117,16 +121,19 @@ export async function createServer({ store, dataFile = DEFAULT_DATA_FILE, distDi
       try { pathname = decodeURIComponent(req.url.split('?')[0]); }
       catch { throw requestError('INVALID_PATH', '无法访问此路径。'); }
       if (pathname === '/api/state' && (req.method === 'GET' || req.method === 'HEAD')) {
+        await ingestor.drain();
         const at = now();
-        return json(res, 200, { state: await store.read(at), catalog, now: at, ...(store.recoveryNotice ? { recoveryNotice: store.recoveryNotice } : {}) }, req.method === 'HEAD');
+        const state = await store.read(at);
+        return json(res, 200, { state, codex: summary(state, at), catalog, now: at, ...(store.recoveryNotice ? { recoveryNotice: store.recoveryNotice } : {}) }, req.method === 'HEAD');
       }
       if (pathname === '/api/actions' && req.method === 'POST') {
         checkWriteOrigin(req, host);
         isAction = true;
         const action = await readBody(req, bodyLimit);
+        await ingestor.drain();
         const at = now();
         const result = await store.dispatch(action, at);
-        return json(res, 200, { ...result, catalog, now: at, ...(store.recoveryNotice ? { recoveryNotice: store.recoveryNotice } : {}) });
+        return json(res, 200, { ...result, codex: summary(result.state, at), catalog, now: at, ...(store.recoveryNotice ? { recoveryNotice: store.recoveryNotice } : {}) });
       }
       if (pathname.startsWith('/api/')) {
         throw requestError('METHOD_NOT_ALLOWED', '此接口不支持当前请求。', 405);
@@ -145,6 +152,9 @@ export async function createServer({ store, dataFile = DEFAULT_DATA_FILE, distDi
       json(res, status, value, req.method === 'HEAD');
     }
   });
+  const inboxTimer = setInterval(() => ingestor.drain(), 2000);
+  inboxTimer.unref();
+  server.once('close', () => clearInterval(inboxTimer));
   server.requestTimeout = 30_000;
   server.headersTimeout = 10_000;
   server.keepAliveTimeout = 5_000;
@@ -167,6 +177,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
       port: process.env.YANAMI_PORT === undefined ? DEFAULT_PORT : Number(process.env.YANAMI_PORT),
       dataFile: process.env.YANAMI_DATA_FILE || DEFAULT_DATA_FILE,
       distDir: process.env.YANAMI_DIST_DIR || DEFAULT_DIST_DIR,
+      ...(process.env.YANAMI_CODEX_SPOOL ? { codexSpoolDir: process.env.YANAMI_CODEX_SPOOL } : {}),
     });
     console.log(`Yanami Snack Club: http://127.0.0.1:${server.address().port}`);
     const stop = () => server.close(() => { process.exitCode = 0; });

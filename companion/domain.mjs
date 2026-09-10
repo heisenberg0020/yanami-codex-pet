@@ -1,7 +1,8 @@
 import { catalog } from './catalog.mjs';
+import { createCodexState, validateCodex, codexEntitlements } from './codex.mjs';
 
 const SNACK_IDS = catalog.snacks.map(({ id }) => id);
-const ACTION_TYPES = ['start', 'pause', 'resume', 'cancel', 'claim', 'feed', 'settings'];
+const ACTION_TYPES = ['start', 'pause', 'resume', 'cancel', 'claim', 'feed', 'settings', 'claimCodex'];
 const FOCUS_MINUTES = [15, 25, 45];
 export const RECENT_ACTION_LIMIT = 128;
 const MAX_TIME = 8_640_000_000_000_000;
@@ -87,7 +88,7 @@ function rewardFor(id, startedAt, mode, durationMs) {
   const seed = `${id}|${startedAt}|${mode}|${durationMs}`;
   return {
     snackId: SNACK_IDS[hash(`${seed}|snack`) % SNACK_IDS.length],
-    quantity: mode === 'trial' ? 1 : ({ 15: 1, 25: 2, 45: 3 })[durationMs / 60_000],
+    quantity: mode === 'trial' || mode === 'codex' ? 1 : ({ 15: 1, 25: 2, 45: 3 })[durationMs / 60_000],
     storyId: catalog.stories[hash(`${seed}|story`) % catalog.stories.length].id,
     keepsakeId: hash(`${seed}|sticker-chance`) % 3 === 0 ? catalog.keepsakes[hash(`${seed}|sticker`) % catalog.keepsakes.length].id : null,
   };
@@ -106,7 +107,7 @@ function validateReward(value, expected, label) {
 export function createInitialState(now) {
   checkNow(now);
   return {
-    schemaVersion: 1, revision: 0, createdAt: now, updatedAt: now,
+    schemaVersion: 2, revision: 0, createdAt: now, updatedAt: now, codex: createCodexState(),
     inventory: Object.fromEntries(SNACK_IDS.map((id) => [id, 1])),
     collection: Object.fromEntries(SNACK_IDS.map((id) => [id, { feedCount: 0, firstFedAt: null, lastFedAt: null, lastLineIndex: null }])),
     receipts: [], feeds: [], activeTrip: null, settings: { reducedMotion: false }, recentActions: [],
@@ -118,6 +119,7 @@ export function createInitialState(now) {
  * Returns an independent JSON copy and never mutates the caller's object.
  */
 export function validateState(value) {
+  if (plain(value) && Number.isInteger(value.schemaVersion) && ![1, 2].includes(value.schemaVersion)) fail('UNSUPPORTED_SAVE_VERSION', '存档来自更新的版本，请使用对应版本打开；原文件已保留。', 503);
   try { return validateSavedState(value); }
   catch (error) {
     if (error instanceof DomainError && error.code === 'INVALID_STATE') throw error;
@@ -126,8 +128,12 @@ export function validateState(value) {
 }
 
 function validateSavedState(value) {
-  keys(value, ['schemaVersion', 'revision', 'createdAt', 'updatedAt', 'inventory', 'collection', 'receipts', 'feeds', 'activeTrip', 'settings', 'recentActions'], '存档');
-  ensure(value.schemaVersion === 1, '不支持此存档版本。');
+  const fields = ['schemaVersion', 'revision', 'createdAt', 'updatedAt', 'inventory', 'collection', 'receipts', 'feeds', 'activeTrip', 'settings', 'recentActions'];
+  keys(value, value.schemaVersion === 1 ? fields : [...fields, 'codex'], '存档');
+  if (value.schemaVersion === 1) value = { ...clone(value), schemaVersion: 2, codex: createCodexState() };
+  ensure(value.schemaVersion === 2, '不支持此存档版本。');
+  validateCodex(value.codex);
+  const entitlements = new Map(codexEntitlements(value.codex).map(item => [item.id, item]));
   ensure(integer(value.revision) && time(value.createdAt) && time(value.updatedAt) && value.updatedAt >= value.createdAt, '存档版本或时间无效。');
   keys(value.inventory, SNACK_IDS, '库存');
   keys(value.collection, SNACK_IDS, '收藏');
@@ -144,12 +150,16 @@ function validateSavedState(value) {
     keys(receipt, ['id', 'tripId', 'mode', 'focusMinutes', 'durationMs', 'startedAt', 'completedAt', 'claimedAt', 'snackId', 'quantity', 'storyId', 'keepsakeId'], '小票');
     ensure(identifier(receipt.tripId) && receipt.id === receipt.tripId && !tripIds.has(receipt.tripId), '小票编号重复或无效。');
     tripIds.add(receipt.tripId);
-    ensure(durationValid(receipt.mode, receipt.durationMs), '小票模式或时长无效。');
-    ensure(receipt.focusMinutes === (receipt.mode === 'trial' ? 0 : receipt.durationMs / 60_000), '体验采购不能计入专注分钟。');
+    ensure(durationValid(receipt.mode, receipt.durationMs) || receipt.mode === 'codex' && receipt.durationMs === 0, '小票模式或时长无效。');
+    ensure(receipt.focusMinutes === (receipt.mode === 'focus' ? receipt.durationMs / 60_000 : 0), '体验采购不能计入专注分钟。');
     ensure([receipt.startedAt, receipt.completedAt, receipt.claimedAt].every(time)
       && receipt.startedAt >= value.createdAt && receipt.completedAt >= receipt.startedAt + receipt.durationMs
       && receipt.claimedAt >= receipt.completedAt && receipt.claimedAt >= previousClaim && receipt.claimedAt <= value.updatedAt, '小票时间顺序无效。');
     previousClaim = receipt.claimedAt;
+    if (receipt.mode === 'codex') {
+      const earned = entitlements.get(receipt.tripId);
+      ensure(earned && earned.startedAt === receipt.startedAt && earned.completedAt === receipt.completedAt, '协作采购缺少对应的三个回合。');
+    }
     validateReward({ snackId: receipt.snackId, quantity: receipt.quantity, storyId: receipt.storyId, keepsakeId: receipt.keepsakeId }, rewardFor(receipt.tripId, receipt.startedAt, receipt.mode, receipt.durationMs), '小票结果');
     expectedInventory[receipt.snackId] += receipt.quantity;
   }
@@ -195,7 +205,7 @@ function validateSavedState(value) {
     ensure(record.appliedRevision === value.revision - value.recentActions.length + index + 1, '操作版本顺序无效。');
     ensure(same(record.payload, normalizeIntent(record.type, record.payload)), '操作内容无效。');
     validateFeedback(record.feedback, record.type);
-    if (record.type === 'claim') {
+    if (record.type === 'claim' || record.type === 'claimCodex') {
       const receipt = value.receipts.find((item) => item.tripId === record.feedback.receipt.tripId);
       ensure(receipt && same(record.feedback.receipt, receipt), '领取反馈与小票不一致。');
     }
@@ -208,11 +218,11 @@ function validateSavedState(value) {
 }
 
 function validateFeedback(feedback, type) {
-  const extra = type === 'feed' ? ['snackId', 'lineIndex'] : type === 'claim' ? ['receipt'] : [];
+  const extra = type === 'feed' ? ['snackId', 'lineIndex'] : ['claim', 'claimCodex'].includes(type) ? ['receipt'] : [];
   keys(feedback, ['kind', 'title', 'message', ...extra], '操作反馈');
   ensure(feedback.kind === type && ['title', 'message'].every((key) => typeof feedback[key] === 'string' && feedback[key].length > 0 && feedback[key].length <= 500), '操作反馈无效。');
   if (type === 'feed') ensure(SNACK_IDS.includes(feedback.snackId) && integer(feedback.lineIndex, 0, 3) && feedback.message === snack(feedback.snackId).lines[feedback.lineIndex], '投喂反馈无效。');
-  if (type === 'claim') {
+  if (type === 'claim' || type === 'claimCodex') {
     const receipt = feedback.receipt;
     ensure(plain(receipt) && identifier(receipt.tripId), '领取反馈无效。');
     // The enclosing save validator also requires equality with a validated ledger receipt.
@@ -288,6 +298,16 @@ export function applyAction(inputState, inputAction, now) {
       state.receipts.push(receipt);
       state.activeTrip = null;
       result = feedback('claim', '点心带回来了', `${snack(receipt.snackId).name} × ${receipt.quantity} 已放进抽屉。`, { receipt: clone(receipt) });
+      break;
+    }
+    case 'claimCodex': {
+      const claimed = new Set(state.receipts.map(receipt => receipt.tripId));
+      const earned = codexEntitlements(state.codex).find(item => !claimed.has(item.id));
+      if (!earned) fail('NO_CODEX_REWARD', '再积累一些工作回合，八奈见就能带回点心了。', 409);
+      const receipt = { id: earned.id, tripId: earned.id, mode: 'codex', focusMinutes: 0, durationMs: 0, startedAt: earned.startedAt, completedAt: earned.completedAt, claimedAt: now, ...rewardFor(earned.id, earned.startedAt, 'codex', 0) };
+      state.inventory[receipt.snackId] += receipt.quantity;
+      state.receipts.push(receipt);
+      result = feedback('claimCodex', '协作采购带回来了', `${snack(receipt.snackId).name} × 1 已放进抽屉。`, { receipt: clone(receipt) });
       break;
     }
     case 'feed': {

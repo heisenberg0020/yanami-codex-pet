@@ -2,6 +2,7 @@ import * as fs from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { dirname, resolve } from 'node:path';
 import { homedir } from 'node:os';
+import { applyCodexEvent } from './codex.mjs';
 import { createInitialState, applyAction, viewState, validateState } from './domain.mjs';
 
 export const DEFAULT_DATA_FILE = resolve(homedir(), 'Library/Application Support/YanamiSnackClub/state.json');
@@ -32,8 +33,10 @@ export async function createStore({ dataFile = DEFAULT_DATA_FILE, now = Date.now
       throw new StoreError('SAVE_UNREADABLE', '无法读取本地存档，请检查文件访问权限。', 503, { cause: error });
     }
     try {
-      return { kind: 'valid', state: validateState(JSON.parse(raw)) };
-    } catch {
+      const parsed = JSON.parse(raw);
+      return { kind: 'valid', state: validateState(parsed), sourceVersion: parsed.schemaVersion };
+    } catch (error) {
+      if (error.code === 'UNSUPPORTED_SAVE_VERSION') throw error;
       return { kind: 'invalid' };
     }
   }
@@ -77,6 +80,12 @@ export async function createStore({ dataFile = DEFAULT_DATA_FILE, now = Date.now
   const main = await inspect(dataFile);
   if (main.kind === 'valid') {
     state = main.state;
+    if (main.sourceVersion === 1) {
+      const oldVersion = `${dataFile}.v1-${now()}-${randomUUID()}`;
+      await io.copyFile(dataFile, oldVersion, 1);
+      await io.chmod(oldVersion, 0o600);
+      await save(state);
+    }
   } else {
     const backup = await inspect(backupFile);
     if (main.kind === 'missing' && backup.kind === 'missing') {
@@ -116,6 +125,19 @@ export async function createStore({ dataFile = DEFAULT_DATA_FILE, now = Date.now
     get recoveryNotice() { return recoveryNotice; },
     read(at) {
       return serial(() => viewState(structuredClone(state), at ?? now()));
+    },
+    ingest(events, at) {
+      return serial(async () => {
+        const next = structuredClone(state);
+        const observedAt = Math.max(at ?? now(), state.updatedAt);
+        for (const event of events) next.codex = applyCodexEvent(next.codex, event, observedAt);
+        if (next.codex.revision !== state.codex.revision) {
+          validateState(next);
+          await save(next, state);
+          state = next;
+        }
+        return structuredClone(state);
+      });
     },
     dispatch(action, at) {
       return serial(async () => {

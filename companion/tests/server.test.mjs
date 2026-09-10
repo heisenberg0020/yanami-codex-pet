@@ -179,3 +179,23 @@ test('backup recovery notice is visible through GET', async (t) => {
   const response = JSON.parse((await request(base, '/api/state')).body);
   assert.match(response.recoveryNotice, /恢复/);
 });
+
+test('an injected store consumes its own event inbox rather than the default user inbox', async (t) => {
+  const directory = await fs.mkdtemp(join(tmpdir(), 'yanami-isolated-inbox-'));
+  const dataFile = join(directory, 'state.json');
+  const store = await createStore({ dataFile, now: () => START });
+  const spool = join(directory, 'codex-events');
+  await fs.mkdir(spool);
+  const event = { schemaVersion: 1, id: '1'.repeat(64), sessionId: '2'.repeat(64), turnId: '3'.repeat(64), kind: 'UserPromptSubmit', at: START };
+  await fs.writeFile(join(spool, `${event.id}.json`), JSON.stringify(event));
+  const server = await startServer({ store, port: 0, now: () => START });
+  t.after(async () => {
+    server.closeAllConnections();
+    await new Promise(resolve => server.close(resolve));
+    await fs.rm(directory, { recursive: true, force: true });
+  });
+  const data = JSON.parse((await request(`http://127.0.0.1:${server.address().port}`, '/api/state')).body);
+  assert.equal(data.codex.status, 'working');
+  assert.equal(data.state.codex.turns.length, 1);
+  assert.deepEqual(await fs.readdir(spool), []);
+});

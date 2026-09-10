@@ -1,6 +1,6 @@
 {
   "name": "yanami-snack-club",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -10,8 +10,10 @@
     "dev": "vite --config companion/vite.config.mjs",
     "build": "vite build --config companion/vite.config.mjs",
     "start": "node companion/server.mjs",
-    "test": "node --test companion/tests/*.test.mjs preview/animation.test.mjs",
-    "mac:build": "npm run build && bash macos/build.sh"
+    "test": "node --test companion/tests/*.test.mjs tools/codex-hooks/*.test.mjs preview/animation.test.mjs",
+    "mac:build": "npm run build && bash macos/build.sh",
+    "codex:install": "node tools/codex-hooks/install.mjs install",
+    "codex:uninstall": "node tools/codex-hooks/install.mjs uninstall"
   },
   "dependencies": {
     "react": "19.3.0",

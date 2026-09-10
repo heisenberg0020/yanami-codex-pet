@@ -175,6 +175,74 @@ function Modal({ open, onClose, title, children }) {
     </dialog>
   );
 }
+
+const codexEventDate = new Intl.DateTimeFormat("zh-CN", {
+  month: "numeric",
+  day: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+});
+const codexStatuses = {
+  disconnected: ["暂未连接", "新的工作事件到来后，这里会继续更新。"],
+  working: ["正在协作", "Codex 正在处理这一回合，杏菜也去看看点心。"],
+  waiting: ["等待继续", "先在这里歇一会儿，等下一次工作事件。"],
+  idle: ["暂时歇一会儿", "这次收尾已经记下，新的工作回合再一起出发。"],
+  stale: ["暂未收到新动态", "有一阵没有收到工作事件，等下一次事件来更新。"],
+};
+
+function CodexCard({ codex, online, disabled, onClaim }) {
+  const enabled = codex?.enabled === true;
+  const lastEventAt = Number.isFinite(codex?.lastEventAt)
+    ? codex.lastEventAt
+    : null;
+  const status = codexStatuses[codex?.status] ? codex.status : "disconnected";
+  const [label, detail] = !online
+    ? ["连接暂时中断", "暂时连不上小卖部，重连后会更新协作记录。"]
+    : !enabled
+      ? ["尚未开启", "开启本地 Codex 联动后，工作回合会记在这里。"]
+      : lastEventAt === null
+        ? ["等待首次工作事件", "配置已安装；审核信任后，新的 Codex 工作事件会出现在这里。"]
+        : codexStatuses[status];
+  const progress = Math.max(0, Math.min(3, codex?.progress || 0));
+  const pendingRewards = Math.max(0, codex?.pendingRewards || 0);
+  const completedTurns = Math.max(0, codex?.completedTurns || 0);
+  const activeSessions = Math.max(0, codex?.activeSessions || 0);
+  return (
+    <section className="codex-card" aria-labelledby="codex-heading">
+      <div className="codex-heading">
+        <h2 id="codex-heading"><Icon name="bag" />Codex 协作采购</h2>
+        <span className={`codex-status ${online && enabled ? status : "disconnected"}`} role="status">
+          <span aria-hidden="true" />{label}
+        </span>
+      </div>
+      <p className="codex-rule">每 3 次含工具活动的回合收尾，带回 1 份点心</p>
+      <div className="codex-body">
+        <div className="codex-progress-group">
+          <div className="codex-progress-label">
+            <span>下一份点心</span><strong>{progress} / 3 <span>次收尾</span></strong>
+          </div>
+          <div className="codex-progress" role="progressbar" aria-label="下一份协作点心的回合收尾进度" aria-valuemin={0} aria-valuemax={3} aria-valuenow={progress}>
+            {[0, 1, 2].map((step) => <span key={step} className={step < progress ? "recorded" : ""} aria-hidden="true" />)}
+          </div>
+          <p className="codex-detail">{detail}</p>
+        </div>
+        <div className="codex-reward">
+          <p>{pendingRewards > 0 ? <>有 <strong>{pendingRewards}</strong> 份点心等你收好</> : "点心慢慢攒，随时来看看"}</p>
+          <button className="secondary" disabled={disabled || pendingRewards === 0} onClick={onClaim}>
+            <Icon name="basket" size={18} />领取 1 份点心
+          </button>
+        </div>
+      </div>
+      <div className="codex-meta">
+        <span>已记录回合 · {completedTurns}{enabled && activeSessions > 0 ? ` · ${activeSessions} 个会话参与中` : ""}</span>
+        <span>{lastEventAt === null ? "还没有工作事件记录" : `最后更新 · ${codexEventDate.format(lastEventAt)}`}</span>
+      </div>
+      {codex?.notice && <p className="codex-note" role="status">{codex.notice}</p>}
+      <p className="codex-note">按 Codex 收尾事件计数，不代表任务完成或测试通过，也不计专注分钟。</p>
+    </section>
+  );
+}
+
 function App() {
   const [journal] = useState(restoreJournal);
   const [snapshot, setSnapshot] = useState(null),
@@ -187,7 +255,7 @@ function App() {
   const [modal, setModal] = useState(null),
     [feedback, setFeedback] = useState(null),
     [clock, setClock] = useState(Date.now()),
-    [reaction, setReaction] = useState("idle");
+    [reaction, setReaction] = useState(null);
   const [systemReduced, setSystemReduced] = useState(
     () => matchMedia("(prefers-reduced-motion: reduce)").matches,
   );
@@ -197,6 +265,8 @@ function App() {
   const accept = (data) => {
     if (!data.state) return;
     if (current.current && data.state.revision < current.current.state.revision)
+      return;
+    if (current.current && data.state.revision === current.current.state.revision && data.now < current.current.now)
       return;
     offset.current = (data.now || Date.now()) - Date.now();
     setClock(Date.now() + offset.current);
@@ -237,6 +307,13 @@ function App() {
       media.removeEventListener("change", change);
     };
   }, []);
+  useEffect(() => {
+    if (!reaction) return;
+    const schedule = scheduleFor(reaction.state, "native");
+    const duration = schedule.frames.slice(0, schedule.loopStart).reduce((sum, frame) => sum + frame.duration, 0);
+    const timer = setTimeout(() => setReaction(null), duration);
+    return () => clearTimeout(timer);
+  }, [reaction]);
   async function send(type, payload = {}, replayed = null) {
     if (journal.blocked || pending.current || (!replayed && retry)) return;
     const action = replayed || {
@@ -261,7 +338,9 @@ function App() {
         (!data.state ||
           !Number.isSafeInteger(data.state.revision) ||
           !Array.isArray(data.catalog?.snacks) ||
-          data.feedback?.kind !== action.type)
+          data.feedback?.kind !== action.type ||
+          (action.type === "claimCodex" &&
+            (!data.feedback?.receipt || data.feedback.receipt.mode !== "codex")))
       )
         throw new Error("结果尚未确认");
       accept(data);
@@ -277,17 +356,17 @@ function App() {
         return false;
       }
       if (data.feedback) setFeedback(data.feedback);
-      setReaction(
-        action.type === "feed"
+      const nextReaction = action.type === "feed"
           ? "review"
           : action.type === "start"
             ? "waving"
-            : action.type === "claim"
+            : action.type === "claim" || action.type === "claimCodex"
               ? "jumping"
-              : "idle",
-      );
+              : null;
+      setReaction(nextReaction ? { state: nextReaction, id: action.id } : null);
       if (action.type === "feed") setModal("feed");
       if (action.type === "claim" || action.type === "cancel") setModal(null);
+      if (action.type === "claimCodex") setModal("codex-receipt");
       return true;
     } catch {
       setRetry(action);
@@ -311,7 +390,7 @@ function App() {
         )}
       </div>
     );
-  const { state, catalog } = snapshot,
+  const { state, catalog, codex } = snapshot,
     trip = state.activeTrip;
   const remaining = trip
     ? trip.status === "running"
@@ -328,22 +407,46 @@ function App() {
     (id) => state.collection[id].feedCount > 0,
   );
   const focusMinutes = state.receipts.reduce(
-    (sum, r) => sum + r.focusMinutes,
+    (sum, r) => sum + (r.mode === "focus" ? r.focusMinutes : 0),
     0,
   );
   const keepsakes = new Set(state.receipts.map((r) => r.keepsakeId));
-  const reward = trip?.reward;
+  const codexReceipt = modal === "codex-receipt" ? feedback?.receipt : null;
+  const reward = codexReceipt || trip?.reward;
   const prize = snacks.find((s) => s.id === reward?.snackId);
   const story = catalog.stories.find((s) => s.id === reward?.storyId);
   const keepsake = catalog.keepsakes.find((s) => s.id === reward?.keepsakeId);
   const close = () => setModal(null);
+  const codexReaction = online && codex?.enabled
+    ? ({ working: "running", waiting: "waiting" }[codex.status] || "idle")
+    : "idle";
+  const codexScene = codex?.pendingRewards > 0
+    ? ["点心带回来啦，记得收进抽屉。", "点心等你收好"]
+    : online && codex?.enabled
+      ? {
+          working: ["你忙你的，我去挑点心。", "陪你协作中"],
+          waiting: ["先看看需要你决定的事，我等你。", "等你做决定"],
+          stale: ["先歇会儿，有新动静再叫我。", "等待新动态"],
+          idle: ["我在这里，下一回合再一起出发。", "安静陪你"],
+        }[codex.status]
+      : null;
+  const interactionSpeech = reaction && ["feed", "claim", "claimCodex"].includes(feedback?.kind)
+    ? feedback.message
+    : null;
   const speech = ready
     ? "回来啦。袋子里有一点惊喜。"
     : trip?.status === "paused"
       ? "歇一会儿，我帮你留着。"
       : trip
         ? "慢慢来，我会带着点心回来。"
-        : "路过便利店，要带什么吗？";
+        : interactionSpeech || codexScene?.[0] || "路过便利店，要带什么吗？";
+  const stageCaption = ready
+    ? "采购归来"
+    : trip
+      ? "点心在路上"
+      : interactionSpeech
+        ? feedback.kind === "feed" ? "一起吃点心" : "点心已收好"
+        : codexScene?.[1] || "便利店出发前";
   const title = ready
     ? "点心买到了。"
     : trip?.status === "paused"
@@ -418,14 +521,14 @@ function App() {
                 </div>
                 <div className="arch" />
                 <Pet
-                  key={`${reaction}-${feedback?.message || ""}`}
-                  reaction={reaction}
+                  key={reaction?.id || `codex-${codexReaction}`}
+                  reaction={reaction?.state || codexReaction}
                   reduced={state.settings.reducedMotion || systemReduced}
                 />
                 <div className="ground" />
                 <span className="stage-caption">
                   杏菜 ·{" "}
-                  {ready ? "采购归来" : trip ? "点心在路上" : "便利店出发前"}
+                  {stageCaption}
                 </span>
               </div>
               <div className="focus-controls">
@@ -537,6 +640,7 @@ function App() {
                 )}
               </div>
             </section>
+            <CodexCard codex={codex} online={online} disabled={disabled} onClaim={() => send("claimCodex", {})} />
             <section className="drawer-preview">
               <div className="preview-heading">
                 <h2>
@@ -712,9 +816,11 @@ function App() {
                           </div>
                           <small>
                             {date(r.claimedAt)} ·{" "}
-                            {r.mode === "trial"
-                              ? "体验采购"
-                              : `${r.focusMinutes} 分钟专注`}
+                            {r.mode === "codex"
+                              ? "协作采购"
+                              : r.mode === "trial"
+                                ? "体验采购"
+                                : `${r.focusMinutes} 分钟专注`}
                           </small>
                           <p>
                             {
@@ -772,8 +878,8 @@ function App() {
         open={modal !== null}
         onClose={close}
         title={
-          modal === "receipt"
-            ? "今天的采购小票"
+          modal === "receipt" || modal === "codex-receipt"
+            ? modal === "codex-receipt" ? "协作带回的小点心" : "今天的采购小票"
             : modal === "cancel"
               ? "结束这趟采购？"
               : feedback?.title || "点心时间"
@@ -789,12 +895,14 @@ function App() {
             )}
           </div>
         )}
-        {modal === "receipt" && prize && (
+        {(modal === "receipt" || modal === "codex-receipt") && prize && (
           <div className="receipt-modal">
             <span className="receipt-mode">
-              {trip.mode === "trial"
-                ? "体验采购 · 30 秒"
-                : `专注采购 · ${Math.round(trip.durationMs / 60000)} 分钟`}
+              {codexReceipt
+                ? "协作采购 · 3 次回合收尾"
+                : trip.mode === "trial"
+                  ? "体验采购 · 30 秒"
+                  : `专注采购 · ${Math.round(trip.durationMs / 60000)} 分钟`}
             </span>
             <SnackArt snack={prize} />
             <h3>
@@ -813,12 +921,12 @@ function App() {
             </p>
             <button
               className="primary"
-              disabled={disabled}
-              onClick={() => send("claim")}
+              disabled={!codexReceipt && disabled}
+              onClick={codexReceipt ? close : () => send("claim")}
             >
-              {busy ? "正在收好…" : "收进抽屉"}
+              {codexReceipt ? "收好啦" : busy ? "正在收好…" : "收进抽屉"}
             </button>
-            <small>领取后，点心和小票会一起保存。</small>
+            <small>{codexReceipt ? "点心和小票已保存到本机，不计入专注分钟。" : "领取后，点心和小票会一起保存。"}</small>
           </div>
         )}
         {modal === "feed" && (
