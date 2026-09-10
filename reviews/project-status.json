@@ -43,5 +43,10 @@
     "testedCommit": "d814c6324e4ed399b66866506a738d06175bc83f",
     "url": "https://github.com/heisenberg0020/yanami-codex-pet/actions/runs/34454784520",
     "candidateRebuildPixelsMatch": true
+  },
+  "githubCI": {
+    "status": "pass",
+    "testedCommit": "70ad1ae1cdf11d4f3af2d49e7994ba5d69ec2e78",
+    "url": "https://github.com/heisenberg0020/yanami-codex-pet/actions/runs/34460733709"
   }
 }
