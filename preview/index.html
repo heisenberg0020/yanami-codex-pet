@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>八奈见 · 动画审阅</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+  <main>
+    <header class="page-header">
+      <div><h1>八奈见<span>动画审阅</span></h1><p>把表情、节奏与每一帧，对齐到同一个她。</p></div>
+      <div class="header-actions"><a class="review-link" href="source-review.html">查看退回源图</a><button id="reload-assets" class="quiet">重新读取素材</button></div>
+    </header>
+    <div class="notice"><span class="notice-dot" aria-hidden="true"></span><p><strong>浏览器模拟 · 不是 Codex 实机验收</strong><span>按已核实的 v2 帧表裁格播放；候选版始终保留 candidate 标记。</span></p></div>
+
+    <section class="controls" aria-label="审阅控制">
+      <div class="control-row">
+        <label>审阅内容<select id="view"><option value="animation">9 个状态</option><option value="direction">16 个朝向</option></select></label>
+        <label id="state-control">状态<select id="state"></select></label>
+        <label id="direction-control" hidden>朝向<select id="direction"></select></label>
+        <label id="mode-control">播放方式<select id="mode"><option value="native">原生时序 · 3 轮后待机</option><option value="loop">循环审阅 · 持续当前状态</option><option value="reduced">减少动态 · 仅首帧</option></select></label>
+        <label class="revision-control">审阅 revision<input id="revision" type="text" maxlength="80" value="working-copy" spellcheck="false" autocomplete="off" aria-describedby="revision-help"></label>
+      </div>
+      <div class="control-row secondary">
+        <label>背景<select id="background"><option value="checker">棋盘格</option><option value="light">浅色</option><option value="dark">深色</option></select></label>
+        <label>显示尺寸<select id="size"><option value="48">极小审阅 · 48 px</option><option value="96">小图审阅 · 96 px</option><option value="112.64">宿主基准 · 112.64 px</option><option value="192" selected>源格尺寸 · 192 px</option><option value="288">放大 · 288 px</option></select></label>
+        <label class="check"><input id="grid" type="checkbox">格子边框</label>
+        <label class="check"><input id="baseline" type="checkbox">脚底参考线</label>
+        <label id="baseline-control" hidden>参考线 Y<input id="baseline-y" type="number" min="0" max="208" value="190" step="1" aria-label="脚底参考线 Y 坐标"></label>
+      </div>
+    </section>
+
+    <section id="comparison" class="comparison" data-background="checker" aria-label="原版与精修版并排比较">
+      <article class="specimen" id="upstream-panel">
+        <header><div><h2>原版</h2><span class="version">upstream · 仓库原始素材</span></div><span id="upstream-status" class="asset-status">读取中</span></header>
+        <div class="stage"><div class="frame-box"><div id="upstream-sprite" class="sprite" role="img" aria-label="原版八奈见动画"></div><div class="guide-line" aria-hidden="true"></div></div><p class="asset-message" id="upstream-message" hidden></p></div>
+        <footer><span id="upstream-cell">—</span><span>1536 × 2288</span></footer>
+      </article>
+      <article class="specimen candidate" id="candidate-panel">
+        <header><div><h2>精修版 <span class="candidate-tag">candidate</span></h2><span class="version">revision <span id="revision-label">working-copy</span></span></div><span id="candidate-status" class="asset-status">读取中</span></header>
+        <div class="stage"><div class="frame-box"><div id="candidate-sprite" class="sprite" role="img" aria-label="候选精修版八奈见动画"></div><div class="guide-line" aria-hidden="true"></div></div><p class="asset-message" id="candidate-message" hidden></p></div>
+        <footer><span id="candidate-cell">—</span><span>尚未实机验收</span></footer>
+      </article>
+    </section>
+
+    <section class="transport" aria-label="时间线">
+      <div class="transport-top"><div class="playback-buttons"><button id="previous" aria-label="上一帧" title="上一帧（←）">←</button><button id="play" class="primary">暂停</button><button id="next" aria-label="下一帧" title="下一帧（→）">→</button><button id="restart" class="quiet">从头播放</button></div><label id="speed-control">速度<select id="speed"><option value="1">正常 · 1×</option><option value="0.5">慢放 · 0.5×</option><option value="0.25">慢放 · 0.25×</option></select></label><output id="frame-info" aria-live="off">—</output></div>
+      <div id="frame-strip" class="frame-strip" aria-label="选择帧"></div>
+      <p id="playback-note" class="playback-note" aria-live="polite"></p>
+    </section>
+
+    <details class="method"><summary>审阅说明与兼容边界</summary><div class="method-content">
+      <p>正常播放采用本机 2026-09-10 核实的时序：idle 为 6 帧，时长 1680 / 660 / 660 / 840 / 840 / 1920 ms；其他状态完成 3 轮后回 idle。循环审阅只方便检查当前动作，不代表宿主会持续保持该状态。方向角从屏幕上方 0° 起，顺时针每 22.5° 一格。</p>
+      <p>小尺寸采用宿主 CSS 默认宽度 7.04rem 在根字号 16px 下的 112.64px；实际 Mini 尺寸还受应用设置与缩放影响。脚底线是可调审阅参考，不代表系统碰撞或角色的实际锚点。</p>
+      <p>此页仅用 CSS background-position 裁格，不修改图片，不连接 Codex，不模拟任务事件、鼠标追踪、桌面移动或应用缩放。原生减少动态模式只选首帧；系统偏好减少动态时本页默认暂停。</p>
+      <p>动画 WebP 有自己的图像时钟。播放、暂停、逐帧和慢放只控制宿主裁格时钟，不能冻结或重置 WebP 内部动画；本页适合静态 v2 atlas 审阅。</p>
+      <p id="revision-help">revision 为手动审阅标签，也可用 URL 参数 ?revision=名称 预填；它不验证 Git 提交、素材哈希或质量结论。更新文件后点“重新读取素材”，两侧共用同一裁格时钟。</p>
+      <p>快捷键：空格播放/暂停，← / → 逐帧。素材缺失或尺寸不符会明确显示，绝不会拿原版替代候选。列号与行号从 0 开始。</p>
+    </div></details>
+    <footer class="page-footer"><span>Yanami · native v2 review</span><span>9 状态 / 16 朝向 · 192 × 208 每格</span></footer>
+    <noscript><p class="notice">请启用 JavaScript，并通过仓库根目录的本地 HTTP 服务打开此页。</p></noscript>
+  </main>
+</body>
+</html>

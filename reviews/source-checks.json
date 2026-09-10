@@ -1,0 +1,71 @@
+{
+  "date": "2026-09-10",
+  "checks": [
+    {
+      "path": "assets/source/iteration-01/idle.png",
+      "sha256": "56e10d957ab6cd0aefc26d945497e6d45033261f411fc7865dcb3ee17f08b2d6",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null,
+      "decision": "rejected-no-alpha"
+    },
+    {
+      "path": "assets/source/iteration-01/running.png",
+      "sha256": "fbb0635538d093f3b5427eceb39f2642c6769ab78390a4ddd03b00c9128a011d",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null,
+      "decision": "rejected-no-alpha"
+    },
+    {
+      "path": "assets/source/iteration-01/waiting.png",
+      "sha256": "d854adf14fedaa981833101bbcff561daf8ae0108a3868ed755dd4189e7fabe2",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null,
+      "decision": "rejected-no-alpha"
+    },
+    {
+      "path": "assets/source/iteration-02/idle.png",
+      "sha256": "32ab21ee199c98a4e5bbd723b18f5c0e527e261c6909b9f8b7c2b62beb9fb76a",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null,
+      "decision": "rejected-no-alpha"
+    },
+    {
+      "path": "assets/source/iteration-02/running.png",
+      "sha256": "e13f5255b178bbbaa595308ec912c9793641402c52f90c38d4f0d2545670171d",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null,
+      "decision": "rejected-no-alpha"
+    },
+    {
+      "path": "assets/source/iteration-02/waiting.png",
+      "sha256": "162b74cfc7c57f4c074679268e269651230510422e2369d07192c1ddebb46257",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null,
+      "decision": "rejected-no-alpha"
+    }
+  ]
+}

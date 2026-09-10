@@ -1,0 +1,26 @@
+# 本地环境与缓存
+.DS_Store
+._*
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+node_modules/
+.cache/
+
+# 临时制作文件；正式源素材与 reviews 不忽略
+work/
+tmp/
+*.tmp
+
+# 本地私有设置
+.env
+.env.*
+!.env.example
+
+# 编辑器临时文件
+*.swp
+*.swo
+*~

@@ -1,0 +1,5 @@
+{
+  "tool": "built-in image_gen",
+  "iteration": 2,
+  "prompt": "Use case: background-extraction. This is an EDIT of the supplied six-cell character spritesheet. The last version FAILED because its gray checkerboard was painted into the RGB image. Remove ALL of the background, including gray-white checkers and any translucent-looking wrinkles BETWEEN and AROUND the six characters. Deliver a 1536x1024 PNG with a REAL RGBA alpha channel: pixels outside the character outlines must have alpha exactly ZERO. Do NOT draw a checkerboard to symbolize transparency. Do NOT substitute white, gray, black or any opaque color. Transparent means actual absent background pixels. Preserve the six character drawings exactly: pose, face, clothes, color, scale, pencil/notebook if present, and layout unchanged. Keep the white blouse and skin and eye highlights opaque; do not remove white regions inside the characters. Clean antialiased edges. Keep all six cells in the same 3 columns x 2 rows layout at the same locations. No new text, grid lines, shadows or objects. Output the alpha-transparent production PNG, not a screenshot of a transparency editor."
+}

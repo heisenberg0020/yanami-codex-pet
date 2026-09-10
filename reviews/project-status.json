@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-10",
+  "phase": "art-revision",
+  "releaseStatus": "not-ready",
+  "latestArtIteration": "iteration-02",
+  "latestArtDecision": "rejected",
+  "candidatePackage": null,
+  "installedCandidate": false,
+  "baselineUnchanged": true,
+  "automatedTests": {"pythonPassed": 12, "previewPassed": 6},
+  "previewBrowserReview": "pass-for-baseline-and-controls",
+  "codexAcceptance": "not-run",
+  "nextActions": [
+    "Produce truly transparent source frames with baseline-compatible character identity",
+    "Validate source frames and build candidate",
+    "Review same-size comparisons, timing, and transitions",
+    "Install separately and conduct real Codex acceptance"
+  ]
+}

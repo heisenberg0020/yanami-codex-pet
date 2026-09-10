@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>八奈见 · 退回源图审阅</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="source-review.css">
+  <script type="module" src="source-review.mjs"></script>
+</head>
+<body>
+<main>
+  <header class="page-header"><div><h1>退回源图<span>与原版对照</span></h1><p>保留生成结果，让每次退回的原因可以直接看见。</p></div><a class="review-link" href="index.html">← 返回动画审阅</a></header>
+  <div class="rejected-notice"><strong>REJECTED · 未安装</strong><p>两轮源图均为 RGB，无 alpha 透明通道，不符合透明图集要求。人物比例、脸型和制服细节还存在风格混用问题，不能直接拼入原版。</p><p>此处展示退回记录，未作为候选包安装；没有抠图、补透明、图像修复或导出。</p></div>
+  <section class="controls" aria-label="源图审阅控制"><div class="control-row">
+    <label>状态<select id="source-state"><option value="idle">待机 · idle</option><option value="waiting">等待 · waiting</option><option value="running">工作中 · running</option></select></label>
+    <label>生成轮次<select id="source-revision"><option value="iteration-01">r1 · iteration-01</option><option value="iteration-02">r2 · iteration-02</option></select></label>
+    <label>源图帧<select id="source-frame"><option value="0">1 / 6</option><option value="1">2 / 6</option><option value="2">3 / 6</option><option value="3">4 / 6</option><option value="4">5 / 6</option><option value="5">6 / 6</option></select></label>
+    <label>同宽显示<select id="source-size"><option value="112.64">宿主基准 · 112.64 px</option><option value="192" selected>放大对照 · 192 px</option><option value="288">细节对照 · 288 px</option></select></label>
+    <label>背景<select id="source-background"><option value="checker">棋盘格</option><option value="light">浅色</option><option value="dark">深色</option></select></label>
+  </div></section>
+  <section id="source-comparison" class="comparison" data-background="checker" aria-label="原版与退回源图对照">
+    <article class="specimen" id="source-original-panel"><header><div><h2>原版 · 第 1 帧</h2><span class="version">对应状态的身份与比例参考</span></div><span id="source-original-status" class="asset-status">读取中</span></header><div class="stage"><div class="frame-box"><div class="sprite" id="source-original" role="img" aria-label="原版对应状态第一帧"></div></div><p id="source-original-error" class="asset-message" hidden></p></div><footer><span id="source-original-cell">row 0 · col 0</span><span>源格 192 × 208</span></footer></article>
+    <article class="specimen" id="source-rejected-panel"><header><div><h2>退回源图 <span class="rejected-tag">REJECTED</span></h2><span id="source-version" class="version">r1 · idle · 第 1 帧</span></div><span id="source-load-status" class="asset-status">读取中</span></header><div class="stage"><div class="source-frame-box"><div id="source-image" class="source-image" role="img" aria-label="退回生成源图当前帧"></div></div><p id="source-image-error" class="asset-message" hidden></p></div><footer><span id="source-grid-position">源图 row 0 · col 0</span><span>RGB · 无 alpha · 未安装</span></footer></article>
+  </section>
+  <section class="source-frames" aria-label="源图六格"><div class="source-frames-heading"><h2>这张源图的 6 格</h2><a id="source-file-link" class="review-link" href="../assets/source/iteration-01/idle.png" target="_blank" rel="noopener">打开完整源图 ↗</a></div><div id="source-thumbnails" class="source-thumbnails"></div><p>点击切换，或用 ← / → 逐格查看。左侧始终保持原版对应状态的第 1 帧；两侧仅等宽显示，保留各自画布比例。</p></section>
+  <details class="method"><summary>为什么不是候选动画验收</summary><div class="method-content"><p>每张生成源图为 1536 × 1024、3 列 × 2 行，单格 512 × 512；原版为 1536 × 2288 的 v2 图集，单格 192 × 208。此页只通过 CSS background-position 裁格显示原始像素；不会把六格映射为宿主动作或写入候选素材。</p><p>源图中的棋盘或背景像素会原样保留，换深色底也不会让它们变透明。请重点比较头身比例、脸颊与眼睛、发饰、制服结构、脚底和人物大小；源图好看不等于能与现有素材混用。</p><p>112.64px 是本机宿主 CSS 默认 7.04rem 在 16px 根字号下的参考宽度；真实应用显示还受缩放与设置影响。本页没有连接或操作 Codex。</p></div></details>
+  <footer class="page-footer"><span>Yanami · source review</span><span>r1 / r2 · 退回记录 · 不产生验收通过结论</span></footer>
+</main>
+</body>
+</html>
